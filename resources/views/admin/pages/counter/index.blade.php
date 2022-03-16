@@ -28,7 +28,9 @@
         <div class="card-header py-3">
             <div class="row justify-content-between m-0">
                 <h6 class="m-2 font-weight-bold text-primary">Data Counter</h6>
-                <a href="" class="btn btn-primary"><i class="fas fa-plus-circle"></i><span>&nbsp;Tambah</span></a>
+                @if (Auth::guard('admin')->user()->role == 'gudang')
+                    <a href="" class="btn btn-primary"><i class="fas fa-plus-circle"></i><span>&nbsp;Tambah</span></a>
+                @endif
             </div>
 
         </div>
@@ -42,7 +44,9 @@
                             <th>Nama Counter</th>
                             <th>Alamat</th>
                             <th>Username</th>
-                            <th>Action</th>
+                            @if (Auth::guard('admin')->user()->role == 'gudang')
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tfoot>
@@ -52,7 +56,9 @@
                             <th>Nama Counter</th>
                             <th>Alamat</th>
                             <th>Username</th>
-                            <th>Action</th>
+                            @if (Auth::guard('admin')->user()->role == 'gudang')
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </tfoot>
                     <tbody>
@@ -62,12 +68,14 @@
                             <td>Edinburgh</td>
                             <td>61</td>
                             <td>2011/04/25</td>
-                            <td>
-                                <a href="#" class="btn btn-info"><i class="fas fa-edit"></i><Span>&nbsp;Edit</Span></a>
-                                <a href="#" class="btn btn-danger"><i
-                                        class="fas fa-trash"></i></i><Span>&nbsp;Delete</Span></a>
-
-                            </td>
+                            @if (Auth::guard('admin')->user()->role == 'gudang')
+                                <td>
+                                    <a href="#" class="btn btn-info"><i
+                                            class="fas fa-edit"></i><Span>&nbsp;Edit</Span></a>
+                                    <a href="#" class="btn btn-danger"><i
+                                            class="fas fa-trash"></i></i><Span>&nbsp;Delete</Span></a>
+                                </td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>

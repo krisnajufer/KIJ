@@ -14,7 +14,7 @@ class CounterController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

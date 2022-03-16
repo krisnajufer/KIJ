@@ -27,15 +27,18 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ route('barang') }}">
             <i class="fa fa-archive"></i>
             <span>Barang</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-warehouse"></i>
-            <span>Gudang</span></a>
-    </li>
+    @if (Auth::guard('admin')->user()->role == 'gudang' or Auth::guard('admin')->user()->role == 'owner')
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-warehouse"></i>
+                <span>Gudang</span></a>
+        </li>
+    @endif
+
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-store"></i>

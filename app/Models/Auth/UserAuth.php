@@ -15,7 +15,7 @@ class UserAuth extends  Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'slug', 'username', 'password', 'role', 'created_at', 'updated_at'
+        'user_id', 'name', 'slug', 'username', 'password', 'role', 'created_at', 'updated_at'
     ];
 
     protected $hidden = [

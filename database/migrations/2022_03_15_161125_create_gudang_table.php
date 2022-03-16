@@ -21,8 +21,8 @@ return new class extends Migration
             $table->text('alamat_gudang');
 
             $table->foreign('user_id')
-                ->references('users')
-                ->on('user_id')->onDelete('cascade');
+                ->references('user_id')
+                ->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('counter', function (Blueprint $table) {
-            $table->id();
             $table->string('counter_id', 10);
             $table->primary('counter_id');
             $table->string('slug');
@@ -22,8 +21,8 @@ return new class extends Migration
             $table->text('alamat_counter');
 
             $table->foreign('user_id')
-                ->references('users')
-                ->on('user_id')->onDelete('cascade');
+                ->references('user_id')
+                ->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });
