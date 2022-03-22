@@ -27,9 +27,9 @@ class BarangCounter extends Model
         $counter = Counter::where('user_id', $user_id)->first();
         $counter_id = $counter->counter_id;
         $sub_counter_id = substr($counter_id, 3, 5);
-        $kode = DB::table('barang_counter')->max('barang_counter_id');
+        $kode = BarangCounter::where('counter_id', $counter_id)->max('barang_counter_id');
         $addNol = '';
-        $kode = str_replace("B", "", $kode);
+        $kode = substr($kode, 4, 8);
         $kode = (int) $kode + 1;
         $incrementKode = $kode;
 

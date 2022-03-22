@@ -8,6 +8,7 @@ use App\Models\Admin\Barang;
 use App\Models\Admin\BarangCounter;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Counter;
+use Illuminate\Support\Facades\Redirect;
 
 class BarangController extends Controller
 {
@@ -21,8 +22,7 @@ class BarangController extends Controller
         $role = Auth::guard('admin')->user()->role;
         if ($role == 'gudang' or $role == 'owner') {
 
-            $barangs = Barang::select('*')->orderBy('barang_id', 'desc')->get();
-            return view('admin.pages.barang.index', compact('barangs'));
+            return view('admin.pages.barang.index');
         } elseif ($role == 'counter') {
 
             $user_id =  Auth::guard('admin')->user()->user_id;
@@ -31,9 +31,56 @@ class BarangController extends Controller
 
             $barangs = BarangCounter::join('barang as b', 'barang_counter.barang_id', '=', 'b.barang_id')
                 ->where('barang_counter.counter_id', $counter_id)
+                ->orderBy('barang_counter.barang_counter_id', 'desc')
                 ->get();
 
-            return view('admin.pages.barang.index', compact('barangs'));
+            return view('admin.pages.barang.index', compact('barangs'));;
+        }
+    }
+
+    public function getGudang(Request $request)
+    {
+        $role = Auth::guard('admin')->user()->role;
+        if ($role == 'gudang' or $role == 'owner') {
+            $this->validate($request, [
+                'sumber' => 'required'
+            ]);
+
+            $sumber = $request->sumber;
+            if ($sumber == 'gudang') {
+                $barangs = Barang::select('*')->orderBy('barang_id', 'desc')->get();
+
+                return response()->json(array(
+                    'barang' => $barangs,
+                ), 200);
+            }
+        } else {
+            return back();
+        }
+    }
+
+    public function getCounter(Request $request)
+    {
+        $role = Auth::guard('admin')->user()->role;
+        if ($role == 'gudang' or $role == 'owner') {
+            $this->validate($request, [
+                'sumber' => 'required'
+            ]);
+
+            $sumber = $request->sumber;
+            if ($sumber == 'counter') {
+                $barangs = BarangCounter::join('barang as b', 'barang_counter.barang_id', '=', 'b.barang_id')
+                    ->join('counter as c', 'barang_counter.counter_id', '=', 'c.counter_id')
+                    ->join('users as u', 'c.user_id', '=', 'u.user_id')
+                    ->orderBy('barang_counter.barang_counter_id', 'desc')
+                    ->get();
+
+                return response()->json(array(
+                    'barang' => $barangs,
+                ), 200);
+            }
+        } else {
+            return back();
         }
     }
 
@@ -44,7 +91,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $kode = Barang::kode();
+
+        return view('admin.pages.barang.tambah', compact('kode'));
     }
 
     /**
@@ -55,7 +104,29 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_barang' => 'required',
+            'nama_barang' => 'required',
+            'harga_barang' => 'required',
+            'stok_barang' => 'required'
+        ]);
+
+        $cek_barang = Barang::where('nama_barang', $request->nama_barang)->count();
+
+        if ($cek_barang == 0) {
+            $kode = Barang::kode();
+            $barang = new Barang;
+            $barang->barang_id = $request->id_barang;
+            $barang->slug = \Illuminate\Support\Str::random(16);
+            $barang->nama_barang = $request->nama_barang;
+            $barang->stok_barang = $request->stok_barang;
+            $barang->harga_barang = $request->harga_barang;
+            $barang->save();
+
+            return redirect()->intended('barang')->with("success", "Data barang baru berhasil ditambahkan");
+        } else {
+            return back()->with("warning", "Data barang sudah ada !!");
+        }
     }
 
     /**
@@ -98,8 +169,10 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        Barang::where('slug', $slug)->delete();
+        session()->flash("info", "Data barang berhasil dihapus !!");
+        return redirect::to('barang');
     }
 }
