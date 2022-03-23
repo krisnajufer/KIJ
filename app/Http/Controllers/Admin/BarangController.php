@@ -146,9 +146,11 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $barangs = Barang::where('slug', $slug)->first();
+
+        return view('admin.pages.barang.edit', compact('barangs'));
     }
 
     /**
@@ -158,9 +160,16 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $barangs = Barang::where('slug', $slug)->first();
+
+        $barangs->nama_barang = $request->get('nama_barang');
+        $barangs->stok_barang = $request->get('stok_barang');
+        $barangs->harga_barang = $request->get('harga_barang');
+        $barangs->save();
+
+        return redirect('barang')->with("success", "Data barang berhasil diubah");
     }
 
     /**

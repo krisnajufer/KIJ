@@ -44,9 +44,11 @@ Route::middleware('admin')->group(function () {
     Route::controller(BarangController::class)->group(function () {
         Route::get('/barang', 'index')->name('barang');
         Route::get('/barang/tambah', 'create')->name('tambah.barang');
-        Route::get('/barang/destroy/{id}', 'destroy');
+        Route::get('/barang/destroy/{slug}', 'destroy');
         Route::post('/barang/store', 'store')->name('store.barang');
         Route::post('/barang/getGudang', 'getGudang')->name('get.gudang');
         Route::post('/barang/getCounter', 'getCounter')->name('get.counter');
+        Route::get('/barang/edit/{slug}', 'edit');
+        Route::post('/barang/update/{slug}', 'update');
     });
 });

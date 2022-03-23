@@ -19,6 +19,9 @@ class Counter extends Model
         'password', 'user_id'
     ];
 
+    protected $primaryKey = 'counter_id';
+    protected $keyType = 'string';
+
     public static function kode()
     {
         $kode = DB::table('counter')->max('counter_id');

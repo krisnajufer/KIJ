@@ -46,9 +46,9 @@
                                         var harga = data['barang'][i].harga_barang;
 
                                         var href = "<?php if(Auth::guard('admin')->user()->role == 'gudang'){ ?>" +
-                                            "<div class='row justify-content-between'><a href='/laporan/klasifikasi/detail/" +
+                                            "<div class='row justify-content-between'><a href='<?php echo url('/barang/edit/" +
                                             slug +
-                                            "'" +
+                                            "'); ?>'" +
                                             " class='btn btn-info ml-2'><i class='fas fa-edit'></i><Span>&nbsp;Edit</Span><a/>" +
                                             "<a href='#'" +
                                             "'" +

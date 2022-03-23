@@ -19,6 +19,9 @@ class Gudang extends Model
         'password', 'user_id'
     ];
 
+    protected $primaryKey = 'gudang_id';
+    protected $keyType = 'string';
+
     public static function kode()
     {
         $kode = DB::table('gudang')->max('gudang_id');

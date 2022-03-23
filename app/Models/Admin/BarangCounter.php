@@ -17,6 +17,9 @@ class BarangCounter extends Model
         'barang_counter_id', 'slug', 'barang_id', 'counter_id', 'barang_counter_stok', 'created_at', 'updated_at'
     ];
 
+    protected $primaryKey = 'barang_counter_id';
+    protected $keyType = 'string';
+
     protected $hidden = [
         'barang_id'
     ];

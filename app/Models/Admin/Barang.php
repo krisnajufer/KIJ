@@ -12,6 +12,9 @@ class Barang extends Model
 
     protected $table = 'barang';
 
+    protected $primaryKey = 'barang_id';
+    protected $keyType = 'string';
+
     protected $fillable = [
         'barang_id', 'slug', 'nama_barang', 'stok_barang', 'harga_barang', 'created_at', 'updated_at'
     ];
