@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Counter;
+use App\Models\Admin\User;
+use Illuminate\Support\Facades\Redirect;
 
 class CounterController extends Controller
 {
@@ -14,7 +17,11 @@ class CounterController extends Controller
      */
     public function index()
     {
-        
+        $counters = Counter::select('counter.counter_id', 'counter.slug', 'u.name', 'counter.alamat_counter', 'u.username')
+            ->join('users as u', 'counter.user_id', '=', 'u.user_id')
+            ->get();
+
+        return view('admin.pages.counter.index', compact('counters'));
     }
 
     /**
@@ -78,8 +85,14 @@ class CounterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $counter = Counter::where('slug', $request->slug)->first();
+
+        $user_id = $counter->user_id;
+        User::where('user_id', $user_id)->delete();
+        // Counter::where('slug', $slug)->delete();
+        session()->flash("info", "Data counter berhasil dihapus !!");
+        return redirect::to('counter');
     }
 }

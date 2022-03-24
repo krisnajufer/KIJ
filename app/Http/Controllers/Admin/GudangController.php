@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Gudang;
 use Illuminate\Http\Request;
+
 
 class GudangController extends Controller
 {
@@ -14,7 +16,10 @@ class GudangController extends Controller
      */
     public function index()
     {
-        //
+        $gudangs = Gudang::join('users as u', 'gudang.user_id', '=', 'u.user_id')
+            ->get();
+
+        return view('admin.pages.gudang.index', compact('gudangs'));
     }
 
     /**

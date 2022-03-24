@@ -50,13 +50,15 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                        </tr>
+                        @foreach ($gudangs as $no => $gudang)
+                            <tr>
+                                <td>{{ $no + 1 }}</td>
+                                <td>{{ $gudang->gudang_id }}</td>
+                                <td>{{ $gudang->name }}</td>
+                                <td>{{ $gudang->alamat_gudang }}</td>
+                                <td>{{ $gudang->username }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

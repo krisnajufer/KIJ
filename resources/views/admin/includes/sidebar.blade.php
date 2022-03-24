@@ -33,14 +33,14 @@
     </li>
     @if (Auth::guard('admin')->user()->role == 'gudang' or Auth::guard('admin')->user()->role == 'owner')
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="{{ route('gudang') }}">
                 <i class="fas fa-warehouse"></i>
                 <span>Gudang</span></a>
         </li>
     @endif
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ route('counter') }}">
             <i class="fas fa-store"></i>
             <span>Counter</span></a>
     </li>

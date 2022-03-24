@@ -17,6 +17,10 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}"></script>
     <script>
+        $(document).on('click', '#delete', function() {
+            let slug = $(this).attr('data-id');
+            $('#slug').val(slug);
+        });
         $('input[name=options]').each((i, el) => {
             $(el).on('change', (e) => {
                 const sumber = $(e.target).val();
@@ -52,26 +56,9 @@
                                             " class='btn btn-info ml-2'><i class='fas fa-edit'></i><Span>&nbsp;Edit</Span><a/>" +
                                             "<a href='#'" +
                                             "'" +
-                                            " class='btn btn-danger mr-1' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i><Span>&nbsp;Delete</Span><a/>" +
-                                            "</div>" +
-                                            "<div class='modal fade' id='deleteModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>" +
-                                            "<div class='modal-dialog' role='document'>" +
-                                            "<div class='modal-content'>" +
-                                            "<div class='modal-header'>" +
-                                            "<h5 class='modal-title' id='exampleModalLabel'>Anda yakin untuk hapus data?</h5>" +
-                                            "<button class='close' type='button' data-dismiss='modal' aria-label='Close'>" +
-                                            "<span aria-hidden='true'>×</span>" +
-                                            "</button>" +
-                                            "</div>" +
-                                            "<div class='modal-body'>Pilih iya jika ingin dihapus atau pilih tidak bila tidak ingin dihapus.</div>" +
-                                            "<div class='modal-footer'>" +
-                                            "<button class='btn btn-secondary' type='button' data-dismiss='modal'>Cancel</button>" +
-                                            "<a href='<?php echo url('/barang/destroy/" + slug +"'); ?>" +
-                                            "'" +
-                                            " class='btn btn-primary mr-1'><Span>&nbsp;Iya</Span><a/>" +
-                                            "</div>" +
-                                            "</div>" +
-                                            "</div>" +
+                                            " class='btn btn-danger mr-1' id='delete' data-id='" +
+                                            slug +
+                                            "' data-toggle='modal' data-target='#deleteModal'><i class='fas fa-trash'></i><Span>&nbsp;Delete</Span><a/>" +
                                             "</div>" +
                                             " <?php } ?>";
 
@@ -286,23 +273,25 @@
         </div>
     </div>
 
-    <!-- Confirm Delete Modal-->
+    <!-- Delete Modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk hapus data?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk hapus data ?
+                    </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Pilih iya jika ingin dihapus atau pilih tidak bila tidak ingin dihapus.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('auth.logout') }}" method="post">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                    <form action="{{ route('destroy.barang') }}" method="post">
                         @csrf
-                        <button type="submit" class="btn btn-primary">Logout</button>
+                        <input type="hidden" name="slug" id="slug">
+                        <button type="submit" class="btn btn-primary">Iya</button>
                     </form>
                 </div>
             </div>

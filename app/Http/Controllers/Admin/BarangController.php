@@ -178,9 +178,9 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Request $request)
     {
-        Barang::where('slug', $slug)->delete();
+        Barang::where('slug', $request->slug)->delete();
         session()->flash("info", "Data barang berhasil dihapus !!");
         return redirect::to('barang');
     }

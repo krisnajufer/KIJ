@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BarangController;
+use App\Http\Controllers\Admin\GudangController;
+use App\Http\Controllers\Admin\CounterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,11 +46,20 @@ Route::middleware('admin')->group(function () {
     Route::controller(BarangController::class)->group(function () {
         Route::get('/barang', 'index')->name('barang');
         Route::get('/barang/tambah', 'create')->name('tambah.barang');
-        Route::get('/barang/destroy/{slug}', 'destroy');
+        Route::post('/barang/destroy', 'destroy')->name('destroy.barang');
         Route::post('/barang/store', 'store')->name('store.barang');
         Route::post('/barang/getGudang', 'getGudang')->name('get.gudang');
         Route::post('/barang/getCounter', 'getCounter')->name('get.counter');
         Route::get('/barang/edit/{slug}', 'edit');
         Route::post('/barang/update/{slug}', 'update');
+    });
+
+    Route::controller(GudangController::class)->group(function () {
+        Route::get('/gudang', 'index')->name('gudang');
+    });
+
+    Route::controller(CounterController::class)->group(function () {
+        Route::get('/counter', 'index')->name('counter');
+        Route::post('/counter/destroy', 'destroy')->name('destroy.counter');
     });
 });
