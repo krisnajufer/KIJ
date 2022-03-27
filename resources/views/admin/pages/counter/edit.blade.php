@@ -25,19 +25,32 @@
     </div>
 
     <div class="row">
+        <div class="col-md-12">
+            @if (session()->has('warning'))
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ session('warning') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-2 font-weight-bold text-primary">Edit Data Counter</h6>
                 </div>
                 <div class="card-body ml-5">
-                    <form action="" method="post">
+                    <form action="{{ url('/counter/update/' . $counters->slug) }}" method="post">
+                        @csrf
                         <div class="form-group row">
                             <div class="col-sm-11">
                                 <label for="id_counter" style="color: black; font-weight: 500px;">ID Counter</label>
                                 <input type="text" class="form-control form-control-user"
                                     style="color: black; font-weight: 500px;" id="id_counter" name="id_counter"
-                                    placeholder="" readonly>
+                                    value="{{ $counters->counter_id }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -45,7 +58,7 @@
                                 <label for="nama_counter" style="color: black; font-weight: 500px;">Nama Counter</label>
                                 <input type="text" class="form-control form-control-user"
                                     style="color: black; font-weight: 500px;" id="nama_counter" name="nama_counter"
-                                    placeholder="Nama Counter">
+                                    value="{{ $users->name }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,7 +66,7 @@
                                 <label for="alamat_counter" style="color: black; font-weight: 500px;">Alamat Counter</label>
                                 <input type="text" class="form-control form-control-user" id="alamat_counter"
                                     style="color: black; font-weight: 500px;" name="alamat_counter"
-                                    placeholder="Alamat Counter">
+                                    value="{{ $counters->alamat_counter }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -62,12 +75,12 @@
                                     Counter</label>
                                 <input type="text" class="form-control form-control-user" id="username_counter"
                                     style="color: black; font-weight: 500px;" name="username_counter"
-                                    placeholder="Username Counter">
+                                    value="{{ $users->username }}">
                             </div>
                         </div>
                         <div class="form-group row justify-content-center m-0">
                             <div class="col-sm-6 text-right">
-                                <a href="" class="btn btn-secondary"><i
+                                <a href="{{ route('counter') }}" class="btn btn-secondary"><i
                                         class="fas fa-window-close"></i><span>&nbsp;Batal</span></a>
                             </div>
                             <div class="col-sm-6">

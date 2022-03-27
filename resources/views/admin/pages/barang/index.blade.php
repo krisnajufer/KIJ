@@ -219,7 +219,7 @@
                 </div>
                 <div class="col-md-4 d-flex justify-content-end">
                     @if (Auth::guard('admin')->user()->role == 'gudang')
-                        <a href="{{ route('tambah.barang') }}" class="btn btn-primary" id="tambah"
+                        <a href="{{ route('create.barang') }}" class="btn btn-primary" id="tambah"
                             style="display: none;"><i class="fas fa-plus-circle"></i><span>&nbsp;Tambah</span></a>
                     @endif
                 </div>

@@ -60,7 +60,8 @@
             <div class="row justify-content-between m-0">
                 <h6 class="m-2 font-weight-bold text-primary">Data Counter</h6>
                 @if (Auth::guard('admin')->user()->role == 'gudang')
-                    <a href="" class="btn btn-primary"><i class="fas fa-plus-circle"></i><span>&nbsp;Tambah</span></a>
+                    <a href="{{ route('create.counter') }}" class="btn btn-primary"><i
+                            class="fas fa-plus-circle"></i><span>&nbsp;Tambah</span></a>
                 @endif
             </div>
 
@@ -102,7 +103,7 @@
                                 <td>{{ $counter->username }}</td>
                                 @if (Auth::guard('admin')->user()->role == 'gudang')
                                     <td>
-                                        <a href="#" class="btn btn-info"><i
+                                        <a href="{{ url('/counter/edit/' . $counter->slug) }}" class="btn btn-info"><i
                                                 class="fas fa-edit"></i><Span>&nbsp;Edit</Span></a>
                                         <a href="#" id="delete" class="btn btn-danger" data-toggle='modal'
                                             data-target='#deleteModal' data-id="{{ $counter->slug }}"><i

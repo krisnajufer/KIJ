@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Counter;
 use App\Models\Admin\User;
+use App\Models\Auth\UserAuth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class CounterController extends Controller
 {
@@ -31,7 +33,9 @@ class CounterController extends Controller
      */
     public function create()
     {
-        //
+        $kode = Counter::kode();
+
+        return view('admin.pages.counter.tambah', compact('kode'));
     }
 
     /**
@@ -42,7 +46,42 @@ class CounterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_counter' => 'required',
+            'nama_counter' => 'required',
+            'alamat_counter' => 'required',
+            'username_counter' => 'required',
+        ]);
+
+        $cek_name = User::where('name', $request->nama_counter)->count();
+        if ($cek_name == 0) {
+            $cek_username = User::where('username', $request->username_counter)->count();
+            if ($cek_username == 0) {
+                $user_id = UserAuth::kode();
+                $counters = new Counter;
+                $users = new User;
+
+                $users->user_id = $user_id;
+                $users->slug = Str::random(16);
+                $users->name = $request->nama_counter;
+                $users->role = 'counter';
+                $users->username = $request->username_counter;
+                $users->password = 'counter';
+                $users->save();
+
+                $counters->counter_id = $request->id_counter;
+                $counters->slug = Str::random(16);
+                $counters->user_id = $user_id;
+                $counters->alamat_counter = $request->alamat_counter;
+                $counters->save();
+
+                return redirect('counter')->with("success", "Data counter berhasil ditambahkan");
+            } else {
+                return back()->with("warning", "Data counter dengan username tersebut sudah ada !!");
+            }
+        } else {
+            return back()->with("warning", "Data counter dengan nama tersebut sudah ada !!");
+        }
     }
 
     /**
@@ -53,7 +92,6 @@ class CounterController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -62,9 +100,13 @@ class CounterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $counters = Counter::where('slug', $slug)->first();
+        $user_id = $counters->user_id;
+        $users = User::where('user_id', $user_id)->first();
+
+        return view('admin.pages.counter.edit', compact('counters', 'users'));
     }
 
     /**
@@ -74,9 +116,30 @@ class CounterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+
+        $cek_name = User::where('name', $request->get('nama_counter'))->count();
+        if ($cek_name == 0) {
+            $cek_username = User::where('username', $request->get('username_counter'))->count();
+            if ($cek_username == 0) {
+                $counters = Counter::where('slug', $slug)->first();
+                $user_id = $counters->user_id;
+                $users = User::where('user_id', $user_id)->first();
+
+                $users->name = $request->get('nama_counter');
+                $users->username = $request->get('username_counter');
+                $users->save();
+
+                $counters->alamat_counter = $request->get('alamat_counter');
+                $counters->save();
+                return redirect('counter')->with("success", "Data counter berhasil diubah");
+            } else {
+                return redirect('/counter/edit/' . $slug)->with("warning", "Data counter dengan username tersebut sudah ada / sudah pernah dipakai !!");
+            }
+        } else {
+            return redirect('/counter/edit/' . $slug)->with("warning", "Data counter dengan nama tersebut sudah ada / sudah pernah dipakai !!");
+        }
     }
 
     /**
@@ -91,7 +154,7 @@ class CounterController extends Controller
 
         $user_id = $counter->user_id;
         User::where('user_id', $user_id)->delete();
-        // Counter::where('slug', $slug)->delete();
+
         session()->flash("info", "Data counter berhasil dihapus !!");
         return redirect::to('counter');
     }

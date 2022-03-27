@@ -45,7 +45,7 @@ Route::middleware('admin')->group(function () {
 
     Route::controller(BarangController::class)->group(function () {
         Route::get('/barang', 'index')->name('barang');
-        Route::get('/barang/tambah', 'create')->name('tambah.barang');
+        Route::get('/barang/create', 'create')->name('create.barang');
         Route::post('/barang/destroy', 'destroy')->name('destroy.barang');
         Route::post('/barang/store', 'store')->name('store.barang');
         Route::post('/barang/getGudang', 'getGudang')->name('get.gudang');
@@ -61,5 +61,9 @@ Route::middleware('admin')->group(function () {
     Route::controller(CounterController::class)->group(function () {
         Route::get('/counter', 'index')->name('counter');
         Route::post('/counter/destroy', 'destroy')->name('destroy.counter');
+        Route::get('/counter/create', 'create')->name('create.counter');
+        Route::post('/counter/store', 'store')->name('store.counter');
+        Route::get('/counter/edit/{slug}', 'edit');
+        Route::post('/counter/update/{slug}', 'update');
     });
 });

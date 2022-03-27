@@ -25,19 +25,32 @@
     </div>
 
     <div class="row">
+        <div class="col-md-12">
+            @if (session()->has('warning'))
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ session('warning') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-2 font-weight-bold text-primary">Tambah Data Counter</h6>
                 </div>
                 <div class="card-body ml-5">
-                    <form action="" method="post">
+                    <form action="{{ route('store.counter') }}" method="post">
+                        @csrf
                         <div class="form-group row">
                             <div class="col-sm-11">
                                 <label for="id_counter" style="color: black; font-weight: 500px;">ID Counter</label>
                                 <input type="text" class="form-control form-control-user"
                                     style="color: black; font-weight: 500px;" id="id_counter" name="id_counter"
-                                    placeholder="" readonly>
+                                    value="{{ $kode }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -67,12 +80,33 @@
                         </div>
                         <div class="form-group row justify-content-center m-0">
                             <div class="col-sm-6 text-right">
-                                <a href="" class="btn btn-secondary"><i
+                                <a href="{{ route('counter') }}" class="btn btn-secondary"><i
                                         class="fas fa-window-close"></i><span>&nbsp;Batal</span></a>
                             </div>
                             <div class="col-sm-6">
-                                <button type="submit" class="btn btn-primary"><i
-                                        class="fas fa-save"></i><span>&nbsp;Simpan</span></button>
+                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#saveModal"><i
+                                        class="fas fa-save"></i><span>&nbsp;Simpan</span></a>
+                            </div>
+                        </div>
+                        <!-- Save Modal-->
+                        <div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Siap untuk disimpan ?</h5>
+                                        <button class="close" type="button" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Pastikan data sudah benar, jika sudah benar klik benar dan
+                                        jika belum klik tidak</div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                                        <button type="submit" class="btn btn-primary">Benar</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

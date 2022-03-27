@@ -123,9 +123,9 @@ class BarangController extends Controller
             $barang->harga_barang = $request->harga_barang;
             $barang->save();
 
-            return redirect()->intended('barang')->with("success", "Data barang baru berhasil ditambahkan");
+            return redirect()->intended('barang')->with("success", "Data barang gudang baru berhasil ditambahkan");
         } else {
-            return back()->with("warning", "Data barang sudah ada !!");
+            return back()->with("warning", "Data barang gudang sudah ada !!");
         }
     }
 
@@ -169,7 +169,7 @@ class BarangController extends Controller
         $barangs->harga_barang = $request->get('harga_barang');
         $barangs->save();
 
-        return redirect('barang')->with("success", "Data barang berhasil diubah");
+        return redirect('barang')->with("success", "Data barang gudang berhasil diubah");
     }
 
     /**
