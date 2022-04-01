@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\GudangController;
 use App\Http\Controllers\Admin\CounterController;
+use App\Http\Controllers\Admin\Permintaan\PermintaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,15 @@ Route::middleware('admin')->group(function () {
         Route::post('/counter/store', 'store')->name('store.counter');
         Route::get('/counter/edit/{slug}', 'edit');
         Route::post('/counter/update/{slug}', 'update');
+    });
+
+    Route::controller(PermintaanController::class)->group(function () {
+        Route::get('/permintaan', 'index')->name('permintaan');
+        Route::get('/permintaan/create', 'create')->name('create.permintaan');
+        Route::post('/permintaan/temporary', 'temporary')->name('temporary.permintaan');
+        Route::post('/permintaan/temporary/delete', 'destroyTemporary')->name('destroy.temporary.permintaan');
+        Route::get('/permintaan/store/{kode}', 'store');
+        Route::get('/permintaan/cancel', 'cancelCreate')->name('cancel.create.permintaan');
+        Route::get('/permintaan/show/{slug}', 'show');
     });
 });
