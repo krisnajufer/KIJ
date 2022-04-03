@@ -69,7 +69,13 @@
                                         @endif
                                     </h5>
                                 </td>
-                                <td>{{ $pengiriman->tanggal_pengiriman }}</td>
+                                <td>
+                                    @php
+                                        $date = date_create($pengiriman->tanggal_pengiriman);
+                                        $tanggal = date_format($date, 'd F Y');
+                                        echo $tanggal;
+                                    @endphp
+                                </td>
                                 <td>
                                     <a href="{{ url('/pengiriman/show/' . $pengiriman->slug) }}" class="btn btn-info">
                                         <i class="fas fa-info-circle"></i>&nbsp;<span>Detail</span>
