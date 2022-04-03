@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Admin\Pengiriman;
 use App\Models\Admin\DetailPengiriman;
 use App\Models\Admin\Gudang;
+use Illuminate\Support\Facades\DB;
 
 
 class PermintaanController extends Controller
@@ -30,6 +31,8 @@ class PermintaanController extends Controller
                 ->join('counter as c', 'permintaan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
                 ->orderBy('permintaan.tanggal_permintaan', 'DESC')
+                ->orderBy('permintaan.permintaan_id', 'DESC')
+                ->orderBy(DB::raw('FIELD(status, "Pending", "Proses", "Dikirim", "Diterima")'))
                 ->get();
 
             return view('admin.pages.Permintaan.index', compact('permintaans'));
@@ -42,6 +45,7 @@ class PermintaanController extends Controller
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
                 ->where('permintaan.counter_id', $counter_id)
                 ->orderBy('permintaan.tanggal_permintaan', 'DESC')
+                ->orderBy('permintaan.permintaan_id', 'DESC')
                 ->get();
 
 
@@ -349,17 +353,23 @@ class PermintaanController extends Controller
         $temporary_persetujuans = session("temporary_persetujuans");
 
         foreach ($temporary_persetujuans as $temporary_persetujuan) {
-            $detail_pengirimans = new DetailPengiriman;
 
-            $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
-            $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
-            $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
-            $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
-            $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
             if ($temporary_persetujuan['sumber'] == 'gudang') {
+                $detail_pengirimans = new DetailPengiriman;
+                $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
+                $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
+                $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
+                $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
+                $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
                 $detail_pengirimans->gudang_id = $temporary_persetujuan['id_sumber'];
                 $detail_pengirimans->save();
             } else {
+                $detail_pengirimans = new DetailPengiriman;
+                $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
+                $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
+                $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
+                $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
+                $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
                 $detail_pengirimans->counter_id = $temporary_persetujuan['id_sumber'];
                 $detail_pengirimans->save();
             }

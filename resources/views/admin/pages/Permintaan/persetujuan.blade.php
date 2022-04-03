@@ -52,7 +52,7 @@
                     success: function(data) {
                         $('#id_sumber').html("");
                         $.each(data.msg, function(index, value) {
-                            $('#id_sumber').append("<option value='" + value.id_gudang + "'>" +
+                            $('#id_sumber').append("<option value='" + value.gudang_id + "'>" +
                                 value.name + "</option>");
                         })
                     }
@@ -69,7 +69,7 @@
                     success: function(data) {
                         $('#id_sumber').html("");
                         $.each(data.msg, function(index, value) {
-                            $('#id_sumber').append("<option value='" + value.id_gudang + "'>" +
+                            $('#id_sumber').append("<option value='" + value.counter_id + "'>" +
                                 value.name + "</option>");
                         })
                     }

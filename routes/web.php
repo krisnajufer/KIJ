@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\GudangController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\Permintaan\PermintaanController;
+use App\Http\Controllers\Admin\Pengiriman\PengirimanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,5 +81,10 @@ Route::middleware('admin')->group(function () {
         Route::post('/permintaan/get/sumber', 'getGudangorCounter')->name('get.GudangorCounter');
         Route::post('/permintaan/temporary/persetujuan', 'temporaryPersetujuan')->name('temporary.persetujuan');
         Route::get('/permintaan/store/pengiriman/{permintaan_id}', 'storePengiriman');
+    });
+
+    Route::controller(PengirimanController::class)->group(function () {
+        Route::get('/pengiriman', 'index')->name('pengiriman');
+        Route::get('/pengiriman/show/{slug}', 'show');
     });
 });

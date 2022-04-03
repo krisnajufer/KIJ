@@ -96,6 +96,13 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('pengiriman') }}" aria-expanded="true">
+            <i class="fas fa-truck"></i>
+            <span>Pengiriman</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
