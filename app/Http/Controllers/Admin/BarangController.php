@@ -9,6 +9,8 @@ use App\Models\Admin\BarangCounter;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Counter;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Admin\DetailPengiriman;
+use App\Models\Admin\DetailPermintaan;
 
 class BarangController extends Controller
 {
@@ -180,8 +182,23 @@ class BarangController extends Controller
      */
     public function destroy(Request $request)
     {
-        Barang::where('slug', $request->slug)->delete();
-        session()->flash("info", "Data barang berhasil dihapus !!");
-        return redirect::to('barang');
+        $barang = Barang::select('barang_id')
+            ->where('slug', $request->slug)
+            ->first();
+
+        $barang_id = $barang->barang_id;
+
+        $cek_permintaan = DetailPermintaan::all()
+            ->where('barang_id', $barang_id)
+            ->count();
+
+        if ($cek_permintaan > 0) {
+            session()->flash("warning", "Data barang yang sudah pernah di transaksikan tidak dapat dihapus !!");
+            return redirect::to('barang');
+        } else {
+            Barang::where('slug', $request->slug)->delete();
+            session()->flash("info", "Data barang berhasil dihapus !!");
+            return redirect::to('barang');
+        }
     }
 }

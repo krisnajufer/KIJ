@@ -105,7 +105,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ route('penerimaan') }}">
             <i class="fas fa-truck-loading"></i>
             <span>Penerimaan</span></a>
     </li>

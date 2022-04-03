@@ -80,6 +80,14 @@
                                     <a href="{{ url('/pengiriman/show/' . $pengiriman->slug) }}" class="btn btn-info">
                                         <i class="fas fa-info-circle"></i>&nbsp;<span>Detail</span>
                                     </a>
+                                    @if (Auth::guard('admin')->user()->role == 'counter')
+                                        @if ($pengiriman->status == 'Dikirim')
+                                            <a href="{{ url('/penerimaan/store/' . $pengiriman->slug) }}"
+                                                class="btn btn-success">
+                                                <i class="fas fa-hand-paper"></i>&nbsp;<span>Diterima</span>
+                                            </a>
+                                        @endif
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

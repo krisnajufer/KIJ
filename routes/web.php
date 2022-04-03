@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GudangController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\Permintaan\PermintaanController;
 use App\Http\Controllers\Admin\Pengiriman\PengirimanController;
+use App\Http\Controllers\Admin\Penerimaan\PenerimaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,5 +87,9 @@ Route::middleware('admin')->group(function () {
     Route::controller(PengirimanController::class)->group(function () {
         Route::get('/pengiriman', 'index')->name('pengiriman');
         Route::get('/pengiriman/show/{slug}', 'show');
+    });
+    Route::controller(PenerimaanController::class)->group(function () {
+        Route::get('/penerimaan', 'index')->name('penerimaan');
+        Route::get('/penerimaan/store/{slug}', 'store');
     });
 });

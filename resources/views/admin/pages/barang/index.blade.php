@@ -196,6 +196,19 @@
             </div>
         </div>
     @endif
+
+    @if (session()->has('warning'))
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ session('warning') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row m-0">
@@ -262,7 +275,7 @@
                                     <td>{{ $no + 1 }}</td>
                                     <td>{{ $barang->barang_counter_id }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
-                                    <td>{{ $barang->stok_barang }}</td>
+                                    <td>{{ $barang->barang_counter_stok }}</td>
                                     <td>{{ $barang->harga_barang }}</td>
                                 </tr>
                             @endforeach

@@ -24,11 +24,8 @@ class BarangCounter extends Model
         'barang_id'
     ];
 
-    public static function kode()
+    public static function kode($counter_id)
     {
-        $user_id = Auth::guard('admin')->user()->user_id;
-        $counter = Counter::where('user_id', $user_id)->first();
-        $counter_id = $counter->counter_id;
         $sub_counter_id = substr($counter_id, 3, 5);
         $kode = BarangCounter::where('counter_id', $counter_id)->max('barang_counter_id');
         $addNol = '';
