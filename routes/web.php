@@ -76,5 +76,9 @@ Route::middleware('admin')->group(function () {
         Route::get('/permintaan/store/{kode}', 'store');
         Route::get('/permintaan/cancel', 'cancelCreate')->name('cancel.create.permintaan');
         Route::get('/permintaan/show/{slug}', 'show');
+        Route::get('/permintaan/create/persetujuan/{slug}/{id_barang}', 'createPersetujuan');
+        Route::post('/permintaan/get/sumber', 'getGudangorCounter')->name('get.GudangorCounter');
+        Route::post('/permintaan/temporary/persetujuan', 'temporaryPersetujuan')->name('temporary.persetujuan');
+        Route::get('/permintaan/store/pengiriman/{permintaan_id}', 'storePengiriman');
     });
 });

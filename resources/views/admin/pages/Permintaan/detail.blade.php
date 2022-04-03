@@ -27,8 +27,17 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-2 font-weight-bold text-primary">ID Permintaan : {{ $permintaan_id }} </h6>
-            <a class="btn btn-secondary" href="{{ route('permintaan') }}"><i
-                    class="fas fa-arrow-circle-left"></i>&nbsp;<span>Kembali</span></a>
+            <div class="row">
+                <a class="btn btn-secondary mr-2" href="{{ route('permintaan') }}"><i
+                        class="fas fa-arrow-circle-left"></i>&nbsp;<span>Kembali</span></a>
+                @if (Auth::guard('admin')->user()->role == 'gudang')
+                    @if ($count_tmp == $count_persetujuans)
+                        <a class="btn btn-primary" href="{{ url('/permintaan/store/pengiriman/' . $permintaan_id) }}"><i
+                                class="fas fa-save"></i>&nbsp;<span>Simpan</span></a>
+                    @endif
+                @endif
+            </div>
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -38,6 +47,9 @@
                             <th>No</th>
                             <th>Nama Barang</th>
                             <th>Jumlah Permintaan</th>
+                            @if (Auth::guard('admin')->user()->role == 'gudang')
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tfoot>
@@ -45,14 +57,40 @@
                             <th>No</th>
                             <th>Nama Barang</th>
                             <th>Jumlah Permintaan</th>
+                            @if (Auth::guard('admin')->user()->role == 'gudang')
+                                <th>Action</th>
+                            @endif
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach ($details as $no => $detail)
                             <tr>
-                                <td>{{ $no + 1 }}</td>
+                                <td>{{ $no + 1 }}&nbsp;</td>
                                 <td>{{ $detail->nama_barang }}</td>
                                 <td>{{ $detail->jumlah_permintaan }}</td>
+                                @if (Auth::guard('admin')->user()->role == 'gudang')
+                                    <td>
+                                        @if (!empty($temporary_persetujuans))
+                                            @if (array_key_exists($permintaan_id . $detail->barang_id, $temporary_persetujuans) or $detail->status == 'Dikirim')
+                                                <h5>
+                                                    <span class="badge badge-success">Selesai</span>
+                                                </h5>
+                                            @else
+                                                <a href="{{ url('/permintaan/create/persetujuan/' . $slug . '/' . $detail->barang_id) }}"
+                                                    class="btn btn-success"><i
+                                                        class="fas fa-check-circle"></i>&nbsp;<span>Persetujuan</span></a>
+                                            @endif
+                                        @elseif ($detail->status == 'Dikirim')
+                                            <h5>
+                                                <span class="badge badge-success">Selesai</span>
+                                            </h5>
+                                        @else
+                                            <a href="{{ url('/permintaan/create/persetujuan/' . $slug . '/' . $detail->barang_id) }}"
+                                                class="btn btn-success"><i
+                                                    class="fas fa-check-circle"></i>&nbsp;<span>Persetujuan</span></a>
+                                        @endif
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

@@ -70,10 +70,37 @@
                                     @endphp
                                 </td>
                                 <td>
-                                    <h5><span class="badge badge-secondary">{{ $permintaan->status }}</span></h5>
+                                    <h5>
+                                        @if ($permintaan->status == 'Pending')
+                                            <span class="badge badge-secondary">{{ $permintaan->status }}</span>
+                                        @elseif ($permintaan->status == 'Proses')
+                                            <span class="badge badge-warning">{{ $permintaan->status }}</span>
+                                        @elseif ($permintaan->status == 'Dikirim')
+                                            <span class="badge badge-success">{{ $permintaan->status }}</span>
+                                        @endif
+                                    </h5>
                                 </td>
-                                <td><a href="{{ url('/permintaan/show/' . $permintaan->slug) }}" class="btn btn-info"><i
-                                            class="fas fa-info-circle"></i>&nbsp;<span>Detail</span></a></td>
+                                <td>
+                                    @if (Auth::guard('admin')->user()->role == 'counter')
+                                        <a href="{{ url('/permintaan/show/' . $permintaan->slug) }}"
+                                            class="btn btn-info"><i
+                                                class="fas fa-info-circle"></i>&nbsp;<span>Detail</span></a>
+                                    @elseif (Auth::guard('admin')->user()->role == 'gudang')
+                                        @if ($permintaan->status == 'Pending')
+                                            <a href="{{ url('/permintaan/show/' . $permintaan->slug) }}"
+                                                class="btn btn-info"><i
+                                                    class="fas fa-tasks"></i>&nbsp;<span>Proses</span></a>
+                                        @elseif ($permintaan->status == 'Proses')
+                                            <a href="{{ url('/permintaan/show/' . $permintaan->slug) }}"
+                                                class="btn btn-info"><i
+                                                    class="fas fa-tasks"></i>&nbsp;<span>Persetujuan</span></a>
+                                        @elseif ($permintaan->status == 'Dikirim')
+                                            <a href="{{ url('/permintaan/show/' . $permintaan->slug) }}"
+                                                class="btn btn-info"><i
+                                                    class="fas fa-tasks"></i>&nbsp;<span>Details</span></a>
+                                        @endif
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

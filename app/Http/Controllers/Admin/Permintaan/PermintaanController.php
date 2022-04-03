@@ -10,6 +10,9 @@ use App\Models\Admin\Permintaan;
 use App\Models\Admin\DetailPermintaan;
 use App\Models\Admin\Counter;
 use Illuminate\Support\Carbon;
+use App\Models\Admin\Pengiriman;
+use App\Models\Admin\DetailPengiriman;
+use App\Models\Admin\Gudang;
 
 
 class PermintaanController extends Controller
@@ -23,7 +26,8 @@ class PermintaanController extends Controller
     {
         $role = Auth::guard('admin')->user()->role;
         if ($role == 'gudang') {
-            $permintaans = Permintaan::join('counter as c', 'permintaan.counter_id', '=', 'c.counter_id')
+            $permintaans = Permintaan::select('permintaan.permintaan_id', 'permintaan.status', 'u.name', 'permintaan.slug', 'permintaan.tanggal_permintaan')
+                ->join('counter as c', 'permintaan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
                 ->orderBy('permintaan.tanggal_permintaan', 'DESC')
                 ->get();
@@ -101,15 +105,40 @@ class PermintaanController extends Controller
      */
     public function show($slug)
     {
-        $permintaans = Permintaan::where('slug', $slug)->first();
+        $role = Auth::guard('admin')->user()->role;
+        if ($role == 'gudang') {
+            $permintaans = Permintaan::where('slug', $slug)->first();
+            if ($permintaans->status == 'Pending') {
+                $permintaans->status = "Proses";
+                $permintaans->save();
+            }
+            $permintaan_id = $permintaans->permintaan_id;
+            $details = DetailPermintaan::join('barang as  b', 'detail_permintaan.barang_id', '=', 'b.barang_id')
+                ->join('permintaan as p', 'detail_permintaan.permintaan_id', '=', 'p.permintaan_id')
+                ->where('detail_permintaan.permintaan_id', $permintaan_id)
+                ->get();
 
-        $permintaan_id = $permintaans->permintaan_id;
+            $count_persetujuans = DetailPermintaan::join('barang as  b', 'detail_permintaan.barang_id', '=', 'b.barang_id')
+                ->where('detail_permintaan.permintaan_id', $permintaan_id)
+                ->count();
 
-        $details = DetailPermintaan::join('barang as  b', 'detail_permintaan.barang_id', '=', 'b.barang_id')
-            ->where('detail_permintaan.permintaan_id', $permintaan_id)
-            ->get();
+            $temporary_persetujuans = session("temporary_persetujuans");
+            $tmp = (array) $temporary_persetujuans;
+            $count_tmp = count($tmp);
 
-        return view('admin.pages.Permintaan.detail', compact('details', 'permintaan_id'));
+            return view('admin.pages.Permintaan.detail', compact('details', 'permintaan_id', 'count_tmp', 'count_persetujuans', 'slug', 'temporary_persetujuans'));
+        } elseif ($role == 'counter') {
+            $permintaans = Permintaan::where('slug', $slug)->first();
+
+            $permintaan_id = $permintaans->permintaan_id;
+
+            $details = DetailPermintaan::join('barang as  b', 'detail_permintaan.barang_id', '=', 'b.barang_id')
+                ->join('permintaan as p', 'detail_permintaan.permintaan_id', '=', 'p.permintaan_id')
+                ->where('detail_permintaan.permintaan_id', $permintaan_id)
+                ->get();
+
+            return view('admin.pages.Permintaan.detail', compact('details', 'permintaan_id'));
+        }
     }
 
     /**
@@ -201,6 +230,141 @@ class PermintaanController extends Controller
     {
         $temporary_permintaans = session("temporary_permintaans");
         session()->forget("temporary_permintaans");
+        return redirect()->route('permintaan');
+    }
+
+    public function createPersetujuan($slug, $id_barang)
+    {
+        $permintaans = Permintaan::where('slug', $slug)->first();
+        $permintaan_id = $permintaans->permintaan_id;
+        $counter_id = $permintaans->counter_id;
+        $kode = Pengiriman::kode($permintaan_id);
+
+        $details = DetailPermintaan::select('p.permintaan_id', 'u.name', 'b.barang_id', 'b.nama_barang', 'detail_permintaan.jumlah_permintaan')
+            ->join('permintaan as p', 'detail_permintaan.permintaan_id', '=', 'p.permintaan_id')
+            ->join('barang as b', 'detail_permintaan.barang_id', '=', 'b.barang_id')
+            ->join('counter as c', 'p.counter_id', '=', 'c.counter_id')
+            ->join('users as u', 'c.user_id', '=', 'u.user_id')
+            ->where(['detail_permintaan.permintaan_id' => $permintaan_id, 'detail_permintaan.barang_id' => $id_barang])
+            ->first();
+
+        return view('admin.pages.Permintaan.persetujuan', compact('permintaan_id', 'counter_id', 'kode', 'details'));
+    }
+
+    public function getGudangorCounter(Request $request)
+    {
+        $sumber = $request->sumber;
+        if ($sumber == 'gudang') {
+            $gudangs = Gudang::join('users as u', 'gudang.user_id', '=', 'u.user_id')
+                ->get();
+            return response()->json(array(
+                'msg' => $gudangs
+            ), 200);
+        } elseif ($sumber == 'counter') {
+            $permintaan_id = $request->id_permintaan;
+
+            $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+            $counter_id = $permintaans->counter_id;
+            $counters = Counter::join('users as u', 'counter.user_id', '=', 'u.user_id')
+                ->where('counter.counter_id', '<>', $counter_id)
+                ->get();
+            return response()->json(array(
+                'msg' => $counters
+            ), 200);
+        }
+    }
+
+    public function temporaryPersetujuan(Request $request)
+    {
+        $persetujuan = $request->persetujuan;
+        if ($persetujuan == 'Setuju') {
+            $permintaan_id = $request->id_permintaan;
+            $pengiriman_id = $request->id_pengiriman;
+            $barang_id = $request->id_barang;
+            $kode_session = $permintaan_id . $barang_id;
+            $jumlah_pengiriman = $request->jumlah_pengiriman;
+            $sumber = $request->sumber;
+            $id_sumber = $request->id_sumber;
+
+            $temporary_persetujuans = session("temporary_persetujuans");
+
+            $temporary_persetujuans[$kode_session] = [
+                "pengiriman_id" => $pengiriman_id,
+                "barang_id" => $barang_id,
+                "jumlah_pengiriman" => $jumlah_pengiriman,
+                "sumber" => $sumber,
+                "id_sumber" => $id_sumber,
+                "persetujuan" => $persetujuan
+            ];
+
+            session(["temporary_persetujuans" => $temporary_persetujuans]);
+
+            $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+            $slug = $permintaans->slug;
+
+            return redirect('/permintaan/show/' . $slug);
+        } elseif ($persetujuan == 'Tidak') {
+            $permintaan_id = $request->id_permintaan;
+            $pengiriman_id = $request->id_pengiriman;
+            $barang_id = $request->id_barang;
+            $kode_session = $permintaan_id . $barang_id;
+            $jumlah_pengiriman = $request->jumlah_pengiriman;
+            $sumber = "";
+            $id_sumber = "";
+
+            $temporary_persetujuans = session("temporary_persetujuans");
+
+            $temporary_persetujuans[$kode_session] = [
+                "pengiriman_id" => $pengiriman_id,
+                "barang_id" => $barang_id,
+                "jumlah_pengiriman" => $jumlah_pengiriman,
+                "sumber" => $sumber,
+                "id_sumber" => $id_sumber,
+                "persetujuan" => $persetujuan
+            ];
+
+            session(["temporary_persetujuans" => $temporary_persetujuans]);
+            $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+            $slug = $permintaans->slug;
+
+            return redirect('/permintaan/show/' . $slug);
+        }
+    }
+
+    public function storePengiriman($permintaan_id)
+    {
+        $pengiriman_id = Pengiriman::kode($permintaan_id);
+        $pengirimans = new Pengiriman;
+
+        $pengirimans->pengiriman_id = $pengiriman_id;
+        $pengirimans->slug = \Illuminate\Support\Str::random(16);
+        $pengirimans->permintaan_id = $permintaan_id;
+        $pengirimans->tanggal_pengiriman = Carbon::now();
+        $pengirimans->save();
+
+        $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+        $permintaans->status = "Dikirim";
+        $permintaans->save();
+
+        $temporary_persetujuans = session("temporary_persetujuans");
+
+        foreach ($temporary_persetujuans as $temporary_persetujuan) {
+            $detail_pengirimans = new DetailPengiriman;
+
+            $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
+            $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
+            $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
+            $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
+            $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
+            if ($temporary_persetujuan['sumber'] == 'gudang') {
+                $detail_pengirimans->gudang_id = $temporary_persetujuan['id_sumber'];
+                $detail_pengirimans->save();
+            } else {
+                $detail_pengirimans->counter_id = $temporary_persetujuan['id_sumber'];
+                $detail_pengirimans->save();
+            }
+        }
+        session()->forget("temporary_persetujuans");
         return redirect()->route('permintaan');
     }
 }
