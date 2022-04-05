@@ -108,6 +108,7 @@
                         @csrf
                         <div class="form-group row">
                             <div class="col-sm-11">
+                                <input type="hidden" name="slug" value="{{ $slug }}">
                                 <label for="id_permintaan" style="color: black; font-weight: 500px;">ID permintaan</label>
                                 <input type="text" class="form-control form-control-user"
                                     style="color: black; font-weight: 500px;" id="id_permintaan" name="id_permintaan"
@@ -183,7 +184,7 @@
                             <div class="col-sm-4 text-right">
                             </div>
                             <div class="col-sm-4">
-                                <a href="{{ route('barang') }}" class="btn btn-secondary"><i
+                                <a href="{{ url('/permintaan/show/' . $details->slug) }}" class="btn btn-secondary"><i
                                         class="fas fa-window-close"></i><span>&nbsp;Batal</span></a>
                                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#saveModal"><i
                                         class="fas fa-save"></i><span>&nbsp;Simpan</span></a>

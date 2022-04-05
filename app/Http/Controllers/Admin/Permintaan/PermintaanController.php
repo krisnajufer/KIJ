@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Permintaan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Barang;
+use App\Models\Admin\BarangCounter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Permintaan;
@@ -244,7 +245,7 @@ class PermintaanController extends Controller
         $counter_id = $permintaans->counter_id;
         $kode = Pengiriman::kode($permintaan_id);
 
-        $details = DetailPermintaan::select('p.permintaan_id', 'u.name', 'b.barang_id', 'b.nama_barang', 'detail_permintaan.jumlah_permintaan')
+        $details = DetailPermintaan::select('p.permintaan_id', 'p.slug', 'u.name', 'b.barang_id', 'b.nama_barang', 'detail_permintaan.jumlah_permintaan')
             ->join('permintaan as p', 'detail_permintaan.permintaan_id', '=', 'p.permintaan_id')
             ->join('barang as b', 'detail_permintaan.barang_id', '=', 'b.barang_id')
             ->join('counter as c', 'p.counter_id', '=', 'c.counter_id')
@@ -252,7 +253,7 @@ class PermintaanController extends Controller
             ->where(['detail_permintaan.permintaan_id' => $permintaan_id, 'detail_permintaan.barang_id' => $id_barang])
             ->first();
 
-        return view('admin.pages.Permintaan.persetujuan', compact('permintaan_id', 'counter_id', 'kode', 'details'));
+        return view('admin.pages.Permintaan.persetujuan', compact('permintaan_id', 'counter_id', 'kode', 'details', 'slug'));
     }
 
     public function getGudangorCounter(Request $request)
@@ -289,24 +290,64 @@ class PermintaanController extends Controller
             $jumlah_pengiriman = $request->jumlah_pengiriman;
             $sumber = $request->sumber;
             $id_sumber = $request->id_sumber;
+            $slug = $request->slug;
 
-            $temporary_persetujuans = session("temporary_persetujuans");
 
-            $temporary_persetujuans[$kode_session] = [
-                "pengiriman_id" => $pengiriman_id,
-                "barang_id" => $barang_id,
-                "jumlah_pengiriman" => $jumlah_pengiriman,
-                "sumber" => $sumber,
-                "id_sumber" => $id_sumber,
-                "persetujuan" => $persetujuan
-            ];
+            if ($sumber == 'counter') {
+                $cek_barang_counter = BarangCounter::where(['barang_id' => $barang_id, 'counter_id' => $id_sumber])->count();
+                if ($cek_barang_counter > 0) {
+                    // return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "");
+                    $barang_counters = BarangCounter::where(['barang_id' => $barang_id, 'counter_id' => $id_sumber])->first();
+                    $cek_stok_bc = $barang_counters->barang_counter_stok;
+                    if ($cek_stok_bc > $jumlah_pengiriman) {
+                        $temporary_persetujuans = session("temporary_persetujuans");
 
-            session(["temporary_persetujuans" => $temporary_persetujuans]);
+                        $temporary_persetujuans[$kode_session] = [
+                            "pengiriman_id" => $pengiriman_id,
+                            "barang_id" => $barang_id,
+                            "jumlah_pengiriman" => $jumlah_pengiriman,
+                            "sumber" => $sumber,
+                            "id_sumber" => $id_sumber,
+                            "persetujuan" => $persetujuan
+                        ];
 
-            $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
-            $slug = $permintaans->slug;
+                        session(["temporary_persetujuans" => $temporary_persetujuans]);
 
-            return redirect('/permintaan/show/' . $slug);
+                        $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+                        $slug = $permintaans->slug;
+
+                        return redirect('/permintaan/show/' . $slug);
+                    } else {
+                        return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "stok barang tidak mencukupi dicounter yang dipilih");
+                    }
+                } else {
+                    return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "barang tidak ada dicounter yang dipilih");
+                }
+            } elseif ($sumber == 'gudang') {
+                $barangs = Barang::where('barang_id', $barang_id)->first();
+                $stok_barang = $barangs->stok_barang;
+                if ($stok_barang > $jumlah_pengiriman) {
+                    $temporary_persetujuans = session("temporary_persetujuans");
+
+                    $temporary_persetujuans[$kode_session] = [
+                        "pengiriman_id" => $pengiriman_id,
+                        "barang_id" => $barang_id,
+                        "jumlah_pengiriman" => $jumlah_pengiriman,
+                        "sumber" => $sumber,
+                        "id_sumber" => $id_sumber,
+                        "persetujuan" => $persetujuan
+                    ];
+
+                    session(["temporary_persetujuans" => $temporary_persetujuans]);
+
+                    $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+                    $slug = $permintaans->slug;
+
+                    return redirect('/permintaan/show/' . $slug);
+                } else {
+                    return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "stok barang tidak mencukupi digudang yang dipilih");
+                }
+            }
         } elseif ($persetujuan == 'Tidak') {
             $permintaan_id = $request->id_permintaan;
             $pengiriman_id = $request->id_pengiriman;

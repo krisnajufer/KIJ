@@ -77,6 +77,8 @@
                                             <span class="badge badge-warning">{{ $permintaan->status }}</span>
                                         @elseif ($permintaan->status == 'Dikirim')
                                             <span class="badge badge-success">{{ $permintaan->status }}</span>
+                                        @elseif ($permintaan->status == 'Diterima')
+                                            <span class="badge badge-primary">{{ $permintaan->status }}</span>
                                         @endif
                                     </h5>
                                 </td>
