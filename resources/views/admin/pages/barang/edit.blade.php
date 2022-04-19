@@ -36,6 +36,18 @@
     </div>
 
     <div class="row">
+        <div class="col-md-12">
+            @if (session()->has('warning'))
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <strong>{{ session('warning') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">

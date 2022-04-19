@@ -118,10 +118,14 @@ class CounterController extends Controller
      */
     public function update(Request $request, $slug)
     {
-
-        $cek_name = User::where('name', $request->get('nama_counter'))->count();
+        $counters = Counter::where('slug', $slug)->first();
+        $user_id = $counters->user_id;
+        $users = User::where('user_id', $user_id)->first();
+        $cek_name = User::where('name', $request->get('nama_counter'))
+            ->where('name', '<>', $users->name)->count();
         if ($cek_name == 0) {
-            $cek_username = User::where('username', $request->get('username_counter'))->count();
+            $cek_username = User::where('username', $request->get('username_counter'))
+                ->where('username', '<>', $users->username)->count();
             if ($cek_username == 0) {
                 $counters = Counter::where('slug', $slug)->first();
                 $user_id = $counters->user_id;

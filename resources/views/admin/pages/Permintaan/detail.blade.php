@@ -80,7 +80,7 @@
                                                     class="btn btn-success"><i
                                                         class="fas fa-check-circle"></i>&nbsp;<span>Persetujuan</span></a>
                                             @endif
-                                        @elseif ($detail->status == 'Dikirim')
+                                        @elseif ($detail->status == 'Dikirim' or $detail->status == 'Diterima' or $detail->status == 'Ditolak')
                                             <h5>
                                                 <span class="badge badge-success">Selesai</span>
                                             </h5>

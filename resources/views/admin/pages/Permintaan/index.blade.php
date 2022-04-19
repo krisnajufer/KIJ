@@ -79,6 +79,8 @@
                                             <span class="badge badge-success">{{ $permintaan->status }}</span>
                                         @elseif ($permintaan->status == 'Diterima')
                                             <span class="badge badge-primary">{{ $permintaan->status }}</span>
+                                        @elseif ($permintaan->status == 'Ditolak')
+                                            <span class="badge badge-danger">{{ $permintaan->status }}</span>
                                         @endif
                                     </h5>
                                 </td>
@@ -96,7 +98,7 @@
                                             <a href="{{ url('/permintaan/show/' . $permintaan->slug) }}"
                                                 class="btn btn-info"><i
                                                     class="fas fa-tasks"></i>&nbsp;<span>Persetujuan</span></a>
-                                        @elseif ($permintaan->status == 'Dikirim')
+                                        @elseif ($permintaan->status == 'Dikirim' or $permintaan->status == 'Ditolak' or $permintaan->status == 'Diterima')
                                             <a href="{{ url('/permintaan/show/' . $permintaan->slug) }}"
                                                 class="btn btn-info"><i
                                                     class="fas fa-tasks"></i>&nbsp;<span>Details</span></a>

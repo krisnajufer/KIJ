@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Penerimaan
+    Transaksi Penjualan
 @endsection
 
 @push('after-style')
@@ -21,12 +21,12 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Penerimaan</h1>
+        <h1 class="h3 mb-0 text-gray-800">Transaksi Penjualan</h1>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-2 font-weight-bold text-primary">Data Penerimaan</h6>
+            <h6 class="m-2 font-weight-bold text-primary">Data Transaksi Penjualan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,34 +34,42 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Penerimaan</th>
-                            <th>ID Pengiriman</th>
-                            <th>Nama Counter</th>
-                            <th>Tanggal Penerimaan</th>
+                            <th>ID Transaksi</th>
+                            <th>Counter</th>
+                            <th>Tanggal Penjualan</th>
+                            <th>Grand Total</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>ID Penerimaan</th>
-                            <th>ID Pengiriman</th>
-                            <th>Nama Counter</th>
-                            <th>Tanggal Penerimaan</th>
+                            <th>ID Transaksi</th>
+                            <th>Counter</th>
+                            <th>Tanggal Penjualan</th>
+                            <th>Grand Total</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($penerimaans as $no => $penerimaan)
+                        @foreach ($transaksi_penjualans as $no => $transaksi_penjualan)
                             <tr>
                                 <td>{{ $no + 1 }}</td>
-                                <td>{{ $penerimaan->penerimaan_id }}</td>
-                                <td>{{ $penerimaan->pengiriman_id }}</td>
-                                <td>{{ $penerimaan->name }}</td>
+                                <td>{{ $transaksi_penjualan->transaksi_penjualan_id }}</td>
+                                <td>{{ $transaksi_penjualan->name }}</td>
                                 <td>
                                     @php
-                                        $date = date_create($penerimaan->tanggal_penerimaan);
+                                        $date = date_create($transaksi_penjualan->tanggal_penjualan);
                                         $tanggal = date_format($date, 'd F Y');
                                         echo $tanggal;
                                     @endphp
+                                </td>
+                                <td>{{ $transaksi_penjualan->grand_total_penjualan }}</td>
+                                <td>
+                                    <a href="{{ url('/transaksi/detail/' . $transaksi_penjualan->slug) }}"
+                                        class="btn btn-info">
+                                        <i class="fas fa-info-circle"></i>&nbsp;<span>Detail</span>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

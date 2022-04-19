@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\Permintaan\PermintaanController;
 use App\Http\Controllers\Admin\Pengiriman\PengirimanController;
 use App\Http\Controllers\Admin\Penerimaan\PenerimaanController;
+use App\Http\Controllers\Admin\TransaksiPenjualan\TransaksiPenjualanController;
+use App\Http\Controllers\Admin\Klasifikasi\KlasifikasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,8 @@ Route::middleware('admin')->group(function () {
 
     Route::controller(GudangController::class)->group(function () {
         Route::get('/gudang', 'index')->name('gudang');
+        Route::get('/gudang/edit/{slug}', 'edit');
+        Route::post('/gudang/update/{slug}', 'update');
     });
 
     Route::controller(CounterController::class)->group(function () {
@@ -88,8 +92,25 @@ Route::middleware('admin')->group(function () {
         Route::get('/pengiriman', 'index')->name('pengiriman');
         Route::get('/pengiriman/show/{slug}', 'show');
     });
+
     Route::controller(PenerimaanController::class)->group(function () {
         Route::get('/penerimaan', 'index')->name('penerimaan');
         Route::get('/penerimaan/store/{slug}', 'store');
+    });
+
+    Route::controller(TransaksiPenjualanController::class)->group(function () {
+        Route::get('/kasir', 'index')->name('kasir');
+        Route::post('/kasir/add', 'addTemporaryKeranjang')->name('temporary.keranjang');
+        Route::post('/kasir/destroy', 'destroyTemporaryKeranjang')->name('destroy.temporary.keranjang');
+        Route::get('/kasir/store', 'store')->name('store.transaksi');
+        Route::get('/transaksi', 'indexTransaksi')->name('index.transaksi');
+        Route::get('/transaksi/detail/{slug}', 'show');
+    });
+
+    Route::controller(KlasifikasiController::class)->group(function () {
+        Route::get('/klasifikasi', 'index')->name('klasifikasi');
+        Route::get('/klasifikasi/create', 'create')->name('create.klasifikasi');
+        Route::post('/klasifikasi/create/sample', 'createSampleKlasifikasi')->name('create.sample.klasifikasi');
+        Route::post('/klasifikasi/store', 'store')->name('store.klasifikasi');
     });
 });

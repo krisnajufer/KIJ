@@ -165,13 +165,18 @@ class BarangController extends Controller
     public function update(Request $request, $slug)
     {
         $barangs = Barang::where('slug', $slug)->first();
+        $cek_barangs = Barang::where('nama_barang', $request->get('nama_barang'))
+            ->where('nama_barang', '<>', $barangs->nama_barang)->count();
+        if ($cek_barangs == 0) {
+            $barangs->nama_barang = $request->get('nama_barang');
+            $barangs->stok_barang = $request->get('stok_barang');
+            $barangs->harga_barang = $request->get('harga_barang');
+            $barangs->save();
 
-        $barangs->nama_barang = $request->get('nama_barang');
-        $barangs->stok_barang = $request->get('stok_barang');
-        $barangs->harga_barang = $request->get('harga_barang');
-        $barangs->save();
-
-        return redirect('barang')->with("success", "Data barang gudang berhasil diubah");
+            return redirect('barang')->with("success", "Data barang gudang berhasil diubah");
+        } else {
+            return back()->with("warning", "Nama barang tersebut sudah ada");
+        }
     }
 
     /**

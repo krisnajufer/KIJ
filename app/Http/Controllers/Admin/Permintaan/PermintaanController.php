@@ -378,44 +378,60 @@ class PermintaanController extends Controller
 
     public function storePengiriman($permintaan_id)
     {
+        $temporary_persetujuans = session("temporary_persetujuans");
         $pengiriman_id = Pengiriman::kode($permintaan_id);
         $pengirimans = new Pengiriman;
-
-        $pengirimans->pengiriman_id = $pengiriman_id;
-        $pengirimans->slug = \Illuminate\Support\Str::random(16);
-        $pengirimans->permintaan_id = $permintaan_id;
-        $pengirimans->tanggal_pengiriman = Carbon::now();
-        $pengirimans->save();
-
-        $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
-        $permintaans->status = "Dikirim";
-        $permintaans->save();
-
-        $temporary_persetujuans = session("temporary_persetujuans");
+        $ditolak_counts  = 0;
 
         foreach ($temporary_persetujuans as $temporary_persetujuan) {
-
-            if ($temporary_persetujuan['sumber'] == 'gudang') {
-                $detail_pengirimans = new DetailPengiriman;
-                $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
-                $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
-                $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
-                $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
-                $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
-                $detail_pengirimans->gudang_id = $temporary_persetujuan['id_sumber'];
-                $detail_pengirimans->save();
-            } else {
-                $detail_pengirimans = new DetailPengiriman;
-                $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
-                $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
-                $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
-                $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
-                $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
-                $detail_pengirimans->counter_id = $temporary_persetujuan['id_sumber'];
-                $detail_pengirimans->save();
+            if ($temporary_persetujuan['persetujuan'] == 'Setuju') {
+                $ditolak_counts++;
             }
         }
-        session()->forget("temporary_persetujuans");
-        return redirect()->route('permintaan');
+
+        if ($ditolak_counts > 0) {
+            $pengirimans->pengiriman_id = $pengiriman_id;
+            $pengirimans->slug = \Illuminate\Support\Str::random(16);
+            $pengirimans->permintaan_id = $permintaan_id;
+            $pengirimans->tanggal_pengiriman = Carbon::now();
+            $pengirimans->save();
+
+            $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+            $permintaans->status = "Dikirim";
+            $permintaans->save();
+
+
+            foreach ($temporary_persetujuans as $temporary_persetujuan) {
+
+                if ($temporary_persetujuan['sumber'] == 'gudang') {
+                    $detail_pengirimans = new DetailPengiriman;
+                    $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
+                    $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
+                    $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
+                    $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
+                    $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
+                    $detail_pengirimans->gudang_id = $temporary_persetujuan['id_sumber'];
+                    $detail_pengirimans->save();
+                } else {
+                    $detail_pengirimans = new DetailPengiriman;
+                    $detail_pengirimans->pengiriman_id = $temporary_persetujuan['pengiriman_id'];
+                    $detail_pengirimans->barang_id = $temporary_persetujuan['barang_id'];
+                    $detail_pengirimans->jumlah_pengiriman = $temporary_persetujuan['jumlah_pengiriman'];
+                    $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
+                    $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
+                    $detail_pengirimans->counter_id = $temporary_persetujuan['id_sumber'];
+                    $detail_pengirimans->save();
+                }
+            }
+            session()->forget("temporary_persetujuans");
+            return redirect()->route('permintaan');
+        } else {
+            $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
+            $permintaans->status = "Ditolak";
+            $permintaans->save();
+            
+            session()->forget("temporary_persetujuans");
+            return redirect()->route('permintaan');
+        }
     }
 }

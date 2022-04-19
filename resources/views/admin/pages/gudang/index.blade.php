@@ -38,6 +38,7 @@
                             <th>Nama Gudang</th>
                             <th>Alamat</th>
                             <th>Username</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -47,6 +48,7 @@
                             <th>Nama Gudang</th>
                             <th>Alamat</th>
                             <th>Username</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -57,6 +59,8 @@
                                 <td>{{ $gudang->name }}</td>
                                 <td>{{ $gudang->alamat_gudang }}</td>
                                 <td>{{ $gudang->username }}</td>
+                                <td><a href="{{ url('/gudang/edit/' . $gudang->slug) }}" class="btn btn-info"><i
+                                            class="fas fa-edit"></i><Span>&nbsp;Edit</Span></a></td>
                             </tr>
                         @endforeach
                     </tbody>

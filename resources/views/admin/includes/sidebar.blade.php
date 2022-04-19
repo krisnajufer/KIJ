@@ -89,26 +89,46 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('permintaan') }}" aria-expanded="true">
-            <i class="fa fa-cube" aria-hidden="true"></i>
-            <span>Permintaan</span>
-        </a>
-    </li>
+    @if (Auth::guard('admin')->user()->role == 'counter' or Auth::guard('admin')->user()->role == 'gudang')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('permintaan') }}" aria-expanded="true">
+                <i class="fa fa-cube" aria-hidden="true"></i>
+                <span>Permintaan</span>
+            </a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('pengiriman') }}" aria-expanded="true">
-            <i class="fas fa-truck"></i>
-            <span>Pengiriman</span>
-        </a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('pengiriman') }}" aria-expanded="true">
+                <i class="fas fa-truck"></i>
+                <span>Pengiriman</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('penerimaan') }}">
+                <i class="fas fa-truck-loading"></i>
+                <span>Penerimaan</span></a>
+        </li>
+    @endif
 
-    <!-- Nav Item - Charts -->
+    @if (Auth::guard('admin')->user()->role == 'counter')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('kasir') }}">
+                <i class="fas fa-calculator"></i>
+                <span>Kasir</span></a>
+        </li>
+    @endif
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('penerimaan') }}">
-            <i class="fas fa-truck-loading"></i>
-            <span>Penerimaan</span></a>
+        <a class="nav-link" href="{{ route('index.transaksi') }}">
+            <i class="fas fa-book"></i>
+            <span>Transaksi Penjualan</span></a>
     </li>
+    @if (Auth::guard('admin')->user()->role == 'counter' or Auth::guard('admin')->user()->role == 'gudang')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('klasifikasi') }}">
+                <i class="fas fa-fax"></i>
+                <span>Klasifikasi</span></a>
+        </li>
+    @endif
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
