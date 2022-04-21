@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\Pengiriman\PengirimanController;
 use App\Http\Controllers\Admin\Penerimaan\PenerimaanController;
 use App\Http\Controllers\Admin\TransaksiPenjualan\TransaksiPenjualanController;
 use App\Http\Controllers\Admin\Klasifikasi\KlasifikasiController;
+use App\Http\Controllers\Admin\Laporan\LaporanTransaksiPenjualanController;
+use App\Http\Controllers\Admin\Laporan\LaporanKlasifikasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,5 +114,20 @@ Route::middleware('admin')->group(function () {
         Route::get('/klasifikasi/create', 'create')->name('create.klasifikasi');
         Route::post('/klasifikasi/create/sample', 'createSampleKlasifikasi')->name('create.sample.klasifikasi');
         Route::post('/klasifikasi/store', 'store')->name('store.klasifikasi');
+        Route::get('/klasifikasi/detail/{slug}', 'show');
+    });
+
+    Route::controller(LaporanTransaksiPenjualanController::class)->group(function () {
+        Route::get('/laporan/penjualan', 'index')->name('laporan.penjualan');
+        Route::post('/laporan/penjualan/get', 'getindexPeriode')->name('get.periode');
+        Route::post('/laporan/penjualan/export', 'exportTransaksiPenjualan')->name('laporan.penjualan.export');
+    });
+
+    Route::controller(LaporanKlasifikasiController::class)->group(function () {
+        Route::get('/laporan/klasifikasi', 'index')->name('laporan.klasifikasi');
+        Route::post('/laporan/klasifikasi/getGudang', 'getKlasifikasiGudang')->name('get.klasifikasi.gudang');
+        Route::post('/laporan/klasifikasi/getCounter', 'getKlasifikasiCounter')->name('get.klasifikasi.counter');
+        Route::get('/laporan/klasifikasi/detail/{slug}', 'show');
+        Route::post('/laporan/klasifikasi/export', 'exportKlasifikasi')->name('laporan.klasifikasi.export');
     });
 });

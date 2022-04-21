@@ -74,14 +74,14 @@
                                 <td>
                                     @php
                                         $date_start = date_create($klasifikasi->tgl_mulai_klasifikasi);
-                                        $tanggal_awal = date_format($date_start, 'd F Y');
+                                        $tanggal_awal = date_format($date_start, 'F Y');
                                         echo $tanggal_awal;
                                     @endphp
                                 </td>
                                 <td>
                                     @php
                                         $date_end = date_create($klasifikasi->tgl_akhir_klasifikasi);
-                                        $tanggal_akhir = date_format($date_end, 'd F Y');
+                                        $tanggal_akhir = date_format($date_end, 'F Y');
                                         echo $tanggal_akhir;
                                     @endphp
                                 </td>

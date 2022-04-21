@@ -197,9 +197,26 @@ class KlasifikasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $role = Auth::guard('admin')->user()->role;
+        if ($role == 'gudang') {
+            $klasifikasis = Klasifikasi::where('slug', $slug)->first();
+            $klasifikasi_id = $klasifikasis->klasifikasi_id;
+            $details = DetailKlasifikasi::join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
+                ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
+                ->get();
+
+            return view('admin.pages.klasifikasi.detail', compact('klasifikasi_id', 'details'));
+        } elseif ($role == 'counter') {
+            $klasifikasis = Klasifikasi::where('slug', $slug)->first();
+            $klasifikasi_id = $klasifikasis->klasifikasi_id;
+            $details = DetailKlasifikasi::join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
+                ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
+                ->get();
+
+            return view('admin.pages.klasifikasi.detail', compact('klasifikasi_id', 'details'));
+        }
     }
 
     /**
