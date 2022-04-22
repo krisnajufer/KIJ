@@ -16,7 +16,7 @@ class LaporanKlasifikasiController extends Controller
     public function index()
     {
         $role = Auth::guard('admin')->user()->role;
-        if ($role == 'gudang') {
+        if ($role == 'gudang' or $role == 'owner') {
             return view('admin.pages.laporan.klasifikasi.index');
         } elseif ($role == 'counter') {
             $user_id =  Auth::guard('admin')->user()->user_id;

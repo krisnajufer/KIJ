@@ -45,16 +45,18 @@
             <span>Counter</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Transaksi
-    </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
     @if (Auth::guard('admin')->user()->role == 'counter' or Auth::guard('admin')->user()->role == 'gudang')
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Transaksi
+        </div>
+
         <li class="nav-item">
             <a class="nav-link" href="{{ route('permintaan') }}" aria-expanded="true">
                 <i class="fa fa-cube" aria-hidden="true"></i>
@@ -82,12 +84,13 @@
                 <span>Kasir</span></a>
         </li>
     @endif
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('index.transaksi') }}">
-            <i class="fas fa-book"></i>
-            <span>Transaksi Penjualan</span></a>
-    </li>
+
     @if (Auth::guard('admin')->user()->role == 'counter' or Auth::guard('admin')->user()->role == 'gudang')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('index.transaksi') }}">
+                <i class="fas fa-book"></i>
+                <span>Transaksi Penjualan</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('klasifikasi') }}">
                 <i class="fas fa-fax"></i>
