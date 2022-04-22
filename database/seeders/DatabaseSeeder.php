@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\DetailPengiriman;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,11 @@ class DatabaseSeeder extends Seeder
             BarangSeeder::class,
             BarangCounterSeeder::class,
             GudangSeeder::class,
+            PermintaanSeeder::class,
+            DetailPermintaanSeeder::class,
+            PengirimanSeeder::class,
+            DetailPengirimanSeeder::class,
+            PenerimaanSeeder::class,
         ]);
     }
 }
