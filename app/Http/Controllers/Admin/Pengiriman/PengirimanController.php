@@ -38,9 +38,9 @@ class PengirimanController extends Controller
                 ->join('permintaan as p', 'pengiriman.permintaan_id', '=', 'p.permintaan_id')
                 ->join('counter as c', 'p.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->where('p.counter_id', $counter_id)
                 ->where('p.status', 'Dikirim')
                 ->orWhere('p.status', 'Diterima')
+                ->where('p.counter_id', $counter_id)
                 ->orderBy('pengiriman.tanggal_pengiriman', 'DESC')
                 ->get();
 
