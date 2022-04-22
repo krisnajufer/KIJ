@@ -26,7 +26,7 @@ class UserAuthController extends Controller
         ]);
 
         if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('barang');
         } else {
             return redirect()->intended('login')->with('incorrect', 'Akun tidak ditemukan, periksa kembali username/password Anda');
         }
