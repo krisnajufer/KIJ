@@ -45,6 +45,7 @@
 @php
 $no_kasir = 0;
 $no_keranjang = 0;
+$total = 0;
 @endphp
 
 @section('content')
@@ -175,6 +176,7 @@ $no_keranjang = 0;
                                     @foreach ($temporary_keranjang_counters as $kode_session => $temporary_keranjang_counter)
                                         @php
                                             $no_keranjang++;
+                                            $total = $total + $temporary_keranjang_counter['harga_barang'] * $temporary_keranjang_counter['barang_counter_stok'];
                                         @endphp
                                         <tr>
                                             <td>{{ $no_keranjang }}</td>
@@ -192,6 +194,7 @@ $no_keranjang = 0;
                                 @endif
                             </tbody>
                         </table>
+                        <h5 class="text-dark text-center text-bold">Grand Total Rp {{ $total }}</h5>
                     </div>
                 </div>
             </div>
