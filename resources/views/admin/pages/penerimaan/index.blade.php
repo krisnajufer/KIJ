@@ -40,7 +40,7 @@
                             <th>Tanggal Penerimaan</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Penerimaan</th>
@@ -48,7 +48,7 @@
                             <th>Nama Counter</th>
                             <th>Tanggal Penerimaan</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($penerimaans as $no => $penerimaan)
                             <tr>

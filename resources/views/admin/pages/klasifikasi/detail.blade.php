@@ -45,7 +45,7 @@
                             <th>Klasifikasi</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Klasifikasi</th>
@@ -54,7 +54,7 @@
                             <th>Persentase Biaya</th>
                             <th>Klasifikasi</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($details as $no => $detail)
                             <tr>

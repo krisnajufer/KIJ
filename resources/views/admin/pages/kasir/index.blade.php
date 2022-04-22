@@ -111,16 +111,15 @@ $total = 0;
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Anda yakin menambahkan barang ?
+                            <h5 class="modal-title" id="exampleModalLabel">Apakah Anda yakin menambahkan barang?
                             </h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Masukkan jumlah pembelian yang akan dibeli dan tekan iya jika ingin menambahkan, tekan simpan
-                                bila ingin
-                                membatalkan</p>
+                            <p>Masukkan jumlah pembelian yang akan dibeli dan tekan "Iya" jika ingin menambahkan, pilih
+                                "Batal" bila ingin membatalkan</p>
                             <form action="{{ route('temporary.keranjang') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="slug" id="slug">

@@ -127,7 +127,7 @@
                         <th>Grand Total Penjualan</th>
                     </tr>
                 </thead>
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th>No</th>
                         <th>ID Transaksi</th>
@@ -135,7 +135,7 @@
                         <th>Tanggal Penjualan</th>
                         <th>Grand Total Penjualan</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
                 <tbody>
                     @if ($counts > 0)
                         @foreach ($transaksi_penjualans as $no => $transaksi_penjualan)

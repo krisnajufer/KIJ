@@ -50,13 +50,13 @@
                         <tr>
                             <th>No</th>
                             <th>ID Klasifikasi</th>
-                            <th>Tanggal Mulai Klasifikasi</th>
-                            <th>Tanggal Akhir Klasifikasi</th>
+                            <th>Bulan Mulai Klasifikasi</th>
+                            <th>Bulan Akhir Klasifikasi</th>
                             <th>Total Biaya Pertahun</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Klasifikasi</th>
@@ -65,7 +65,7 @@
                             <th>Total Biaya Pertahun</th>
                             <th>Action</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($klasifikasis as $no => $klasifikasi)
                             <tr>

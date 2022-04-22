@@ -48,8 +48,8 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Pastikan data sudah benar, jika sudah benar klik benar dan
-                            jika belum klik tidak</div>
+                        <div class="modal-body">Pastikan data sudah benar, jika sudah benar pilih "Benar" dan
+                            jika belum pilih "Tidak"</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
                             <button type="submit" class="btn btn-primary">Benar</button>
@@ -71,7 +71,7 @@
                             <th>Klasifikasi</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Klasifikasi</th>
@@ -80,7 +80,7 @@
                             <th>Persentase Biaya</th>
                             <th>Klasifikasi</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($details as $no => $detail)
                             <tr>

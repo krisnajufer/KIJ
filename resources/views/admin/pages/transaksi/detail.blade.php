@@ -44,7 +44,7 @@
                             <th>Subtotal</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>Nama Barang</th>
@@ -52,7 +52,7 @@
                             <th>Jumlah Penjualan</th>
                             <th>Subtotal</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($details as $no => $detail)
                             <tr>

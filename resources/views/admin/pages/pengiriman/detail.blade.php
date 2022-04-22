@@ -43,7 +43,7 @@
                             <th>Dikirim dari</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>Nama Barang</th>
@@ -52,7 +52,7 @@
                             <th>Sumber</th>
                             <th>Dikirim dari</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($details as $no => $detail)
                             <tr>

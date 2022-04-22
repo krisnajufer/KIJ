@@ -211,7 +211,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Klasifikasi</th>
@@ -221,7 +221,7 @@
                             <th>Total Biaya Pertahun</th>
                             <th>Aksi</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @if (Auth::guard('admin')->user()->role == 'counter')
                             @foreach ($klasifikasis as $no => $klasifikasi)

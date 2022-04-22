@@ -5,7 +5,7 @@
 
     @include('admin.includes.meta')
 
-    <title>KIJ - Login</title>
+    <title>YMS - Login</title>
 
     @stack('before-stylle')
     @include('admin.includes.style')
@@ -40,14 +40,14 @@
                                 </div>
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
                                     </div>
                                     <form class="user" action="{{ route('auth.login') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 style="color: black; font-weight: 500px;" id="username" name="username"
-                                                aria-describedby="emailHelp" placeholder="Masukkan Username...">
+                                                aria-describedby="emailHelp" placeholder="Username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"

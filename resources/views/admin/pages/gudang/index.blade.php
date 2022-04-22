@@ -43,7 +43,7 @@
                             @endif
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Gudang</th>
@@ -54,7 +54,7 @@
                                 <th>Action</th>
                             @endif
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($gudangs as $no => $gudang)
                             <tr>

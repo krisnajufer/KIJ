@@ -41,7 +41,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Transaksi</th>
@@ -50,7 +50,7 @@
                             <th>Grand Total</th>
                             <th>Action</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($transaksi_penjualans as $no => $transaksi_penjualan)
                             <tr>

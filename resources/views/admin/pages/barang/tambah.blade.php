@@ -81,7 +81,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-11">
-                                <label for="stok_barang" style="color: black; font-weight: 500px;">Stok Barang</label>
+                                <label for="stok_barang" style="color: black; font-weight: 500px;">Jumlah Barang</label>
                                 <input type="text" class="form-control form-control-user" id="stok_barang"
                                     style="color: black; font-weight: 500px;" name="stok_barang"
                                     onkeypress="InputNumbers(event)" placeholder="Contoh : 50" required>
@@ -107,14 +107,14 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Siap untuk disimpan ?</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Apakah yakin untuk disimpan?</h5>
                                         <button class="close" type="button" data-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">Pastikan data sudah benar, jika sudah benar klik benar dan
-                                        jika belum klik tidak</div>
+                                    <div class="modal-body">Pastikan data sudah benar, jika sudah benar pilih "Benar" dan
+                                        jika belum pilih "Tidak"</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
                                         <button type="submit" class="btn btn-primary">Benar</button>

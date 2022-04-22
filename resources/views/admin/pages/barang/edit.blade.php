@@ -110,12 +110,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Yakin ingin menyimpan perubahan ?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Yakin ingin menyimpan perubahan?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Pilih Iya jika ingin menyimpan perubahan atau pilih Tidak untuk tidak
+                <div class="modal-body">Pilih "Iya" jika ingin menyimpan perubahan atau pilih "Tidak" untuk tidak
                     menyimpan perubahan.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>

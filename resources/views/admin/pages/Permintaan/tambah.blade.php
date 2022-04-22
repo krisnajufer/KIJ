@@ -108,13 +108,13 @@ $no = 0;
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Siap untuk ditambahkan ?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Apakah siap untuk ditambahkan ?</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Pastikan data sudah benar, jika sudah benar klik benar dan
-                                jika belum klik tidak</div>
+                            <div class="modal-body">Pastikan data sudah benar, jika sudah benar pilih "Benar" dan
+                                jika belum pilih "Tidak"</div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
                                 <button type="submit" class="btn btn-primary">Benar</button>

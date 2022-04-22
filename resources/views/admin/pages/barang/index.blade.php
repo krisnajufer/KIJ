@@ -256,7 +256,7 @@
                             @endif
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Barang</th>
@@ -267,7 +267,7 @@
                                 <th>Action</th>
                             @endif
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @if (Auth::guard('admin')->user()->role == 'counter')
                             @foreach ($barangs as $no => $barang)
@@ -292,13 +292,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk hapus data ?
+                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin untuk hapus data?
                     </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Pilih iya jika ingin dihapus atau pilih tidak bila tidak ingin dihapus.</div>
+                <div class="modal-body">Pilih "Iya" jika ingin dihapus atau pilih "Tidak" bila tidak ingin dihapus.
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
                     <form action="{{ route('destroy.barang') }}" method="post">

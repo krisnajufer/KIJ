@@ -42,9 +42,9 @@
 <body>
     <center>
 
-        <h3 class="text-center mt-2 mb-2">PT. KIJ</h3>
-        <p class="text-center mt-2 mb-2">Jl. Milenial</p>
-        <p class="text-center mt-2 mb-2">No. Telepon: 085850757026 | Email: denyndra.26@gmail.com</p>
+        <h3 class="text-center mt-2 mb-2">PT. Young Multi Sarana</h3>
+        <p class="text-center mt-2 mb-2">Jl. Kyai Tambak Deres No.229, Bulak, Kec. Bulak, Kota SBY, Jawa Timur</p>
+        <p class="text-center mt-2 mb-2">No. Telepon: 08970055457 | Email: yms@gmail.com</p>
         <hr style="border: 2;">
         <h4 class="text-center mt-2 mb-2">Laporan Transaksi Penjualan
             @if (Auth::guard('admin')->user()->role == 'gudang' or Auth::guard('admin')->user()->role == 'owner')

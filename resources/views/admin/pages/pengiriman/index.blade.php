@@ -42,7 +42,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>ID Pengiriman</th>
@@ -52,7 +52,7 @@
                             <th>Tanggal Pengiriman</th>
                             <th>Action</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($pengirimans as $no => $pengiriman)
                             <tr>

@@ -52,7 +52,7 @@
                             @endif
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>No</th>
                             <th>Nama Barang</th>
@@ -61,7 +61,7 @@
                                 <th>Action</th>
                             @endif
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
                         @foreach ($details as $no => $detail)
                             <tr>
