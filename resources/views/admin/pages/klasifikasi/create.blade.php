@@ -129,14 +129,14 @@
                 <thead>
                     <tr>
                         <th>Nama Barang</th>
-                        <th>(Permintaan tahunan
+                        <th>(Penjualan Pertahun
                             × cost/unit)/Total
                             (%)</th>
                         <th>Persentase Kumulatif</th>
                         <th>Klasifikasi</th>
                     </tr>
                 </thead>
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th>Nama Barang</th>
                         <th>(Permintaan tahunan
@@ -145,7 +145,7 @@
                         <th>Persentase Kumulatif</th>
                         <th>Klasifikasi</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
                 <tbody>
                     @if ($counts > 0)
                         @php

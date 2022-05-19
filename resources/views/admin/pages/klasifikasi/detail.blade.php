@@ -40,8 +40,10 @@
                             <th>No</th>
                             <th>ID Klasifikasi</th>
                             <th>Nama Barang</th>
-                            <th>Permintaan Tahunan</th>
-                            <th>Persentase Biaya</th>
+                            <th>Jumlah Terjual Pertahun</th>
+                            <th>(Penjualan Pertahun
+                                × cost/unit)/Total
+                                (%)</th>
                             <th>Klasifikasi</th>
                         </tr>
                     </thead>

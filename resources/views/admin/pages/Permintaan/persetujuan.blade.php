@@ -125,17 +125,6 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-11">
-                                <label for="persetujuan" style="color: black; font-weight: 500px;">Persetujuan</label>
-                                <select class="form-control form-control-user" name="persetujuan" id="persetujuan"
-                                    onchange="getPersetujuan()">
-                                    <option value="pilih">Pilih</option>
-                                    <option value="Setuju">Setuju</option>
-                                    <option value="Tidak">Tidak Setuju</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-11">
                                 <input type="hidden" name="id_barang" value="{{ $details->barang_id }}">
                                 <label for="nama_barang" style="color: black; font-weight: 500px;">Nama Barang</label>
                                 <input type="text" class="form-control form-control-user"
@@ -154,11 +143,30 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-11">
+                                <label for="nama_counter" style="color: black; font-weight: 500px;">Jumlah Stok Barang di Counter</label>
+                                <input type="text" class="form-control form-control-user"
+                                    style="color: black; font-weight: 500px;" id="nama_counter" name="nama_counter"
+                                    value="{{ $details->name }}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-11">
                                 <label for="jumlah_pengiriman" style="color: black; font-weight: 500px;">Jumlah
                                     Permintaan</label>
                                 <input type="text" class="form-control form-control-user" id="jumlah_pengiriman"
                                     style="color: black; font-weight: 500px;" name="jumlah_pengiriman"
                                     onkeypress="InputNumbers(event)" value="{{ $details->jumlah_permintaan }}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-11">
+                                <label for="persetujuan" style="color: black; font-weight: 500px;">Persetujuan</label>
+                                <select class="form-control form-control-user" name="persetujuan" id="persetujuan"
+                                    onchange="getPersetujuan()">
+                                    <option value="pilih">Pilih</option>
+                                    <option value="Setuju">Setuju</option>
+                                    <option value="Tidak">Tidak Setuju</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">

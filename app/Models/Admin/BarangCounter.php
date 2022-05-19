@@ -26,7 +26,7 @@ class BarangCounter extends Model
 
     public static function kode($counter_id)
     {
-        $sub_counter_id = substr($counter_id, 3, 5);
+        // $sub_counter_id = substr($counter_id, 3, 5);
         $kode = BarangCounter::where('counter_id', $counter_id)->max('barang_counter_id');
         $addNol = '';
         $kode = substr($kode, 4, 8);
@@ -41,7 +41,7 @@ class BarangCounter extends Model
             $addNol = "0";
         }
 
-        $kodeBaru = "BC" . $sub_counter_id . $addNol . $incrementKode;
+        $kodeBaru = "BC" . $addNol . $incrementKode;
         return $kodeBaru;
     }
 }

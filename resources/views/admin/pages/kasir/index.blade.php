@@ -72,7 +72,7 @@ $total = 0;
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            {{-- <tfoot>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Barang</th>
@@ -80,7 +80,7 @@ $total = 0;
                                     <th>Stok</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> --}}
                             <tbody>
                                 @foreach ($temporary_barang_counters as $kode_session => $temporary_barang_counter)
                                     @php
@@ -161,7 +161,7 @@ $total = 0;
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            {{-- <tfoot>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Barang</th>
@@ -169,7 +169,7 @@ $total = 0;
                                     <th>Jumlah Pembelian</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> --}}
                             <tbody>
                                 @if (!empty($temporary_keranjang_counters))
                                     @foreach ($temporary_keranjang_counters as $kode_session => $temporary_keranjang_counter)
@@ -210,7 +210,8 @@ $total = 0;
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Pilih iya jika ingin dihapus atau pilih tidak bila tidak ingin dihapus.
+                        <div class="modal-body">Pilih "Iya" jika ingin dihapus atau pilih "Tidak" bila tidak ingin
+                            dihapus.
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
@@ -236,7 +237,8 @@ $total = 0;
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Pilih iya jika ingin dihapus atau pilih tidak bila tidak ingin dihapus.
+                        <div class="modal-body">Pilih "Iya" jika ingin dihapus atau pilih "Tidak" bila tidak ingin
+                            dihapus.
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>

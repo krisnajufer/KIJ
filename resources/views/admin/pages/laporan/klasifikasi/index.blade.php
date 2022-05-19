@@ -58,8 +58,8 @@
 
                                     var href = "<?php if(Auth::guard('admin')->user()->role == 'gudang'){ ?>" +
                                         "<div class='row justify-content-between'><a href='<?php echo url('/laporan/klasifikasi/detail/" +
-                                            slug +
-                                            "'); ?>'" +
+                                                                                    slug +
+                                                                                    "'); ?>'" +
                                         " class='btn btn-info ml-2'><i class='fas fa-info-circle'></i><Span>&nbsp;Detail</Span><a/>" +
                                         "</div>" +
                                         " <?php } ?>";
@@ -115,8 +115,8 @@
 
                                     var href = "<?php if(Auth::guard('admin')->user()->role == 'gudang'){ ?>" +
                                         "<div class='row justify-content-between'><a href='<?php echo url('/laporan/klasifikasi/detail/" +
-                                            slug +
-                                            "'); ?>'" +
+                                                                                    slug +
+                                                                                    "'); ?>'" +
                                         " class='btn btn-info ml-2'><i class='fas fa-info-circle'></i><Span>&nbsp;Detail</Span><a/>" +
                                         "</div>" +
                                         " <?php } ?>";
@@ -205,9 +205,9 @@
                             <th>No</th>
                             <th>ID Klasifikasi</th>
                             <th>Sumber</th>
-                            <th>Tanggal Mulai Klasifikasi</th>
-                            <th>Tanggal Akhir Klasifikasi</th>
-                            <th>Total Biaya Pertahun</th>
+                            <th>Bulan Mulai Klasifikasi</th>
+                            <th>Bulan Akhir Klasifikasi</th>
+                            <th>Total Pendapatan Pertahun</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

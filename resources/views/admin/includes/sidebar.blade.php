@@ -70,11 +70,11 @@
                 <span>Pengiriman</span>
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('penerimaan') }}">
                 <i class="fas fa-truck-loading"></i>
                 <span>Penerimaan</span></a>
-        </li>
+        </li> --}}
     @endif
 
     @if (Auth::guard('admin')->user()->role == 'counter')

@@ -52,7 +52,7 @@
                             <th>ID Klasifikasi</th>
                             <th>Bulan Mulai Klasifikasi</th>
                             <th>Bulan Akhir Klasifikasi</th>
-                            <th>Total Biaya Pertahun</th>
+                            <th>Total Pendapatan Pertahun</th>
                             <th>Action</th>
                         </tr>
                     </thead>

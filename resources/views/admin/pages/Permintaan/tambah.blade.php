@@ -56,7 +56,7 @@ $no = 0;
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-2 font-weight-bold text-primary">Tambah Data Permintaan</h6>
@@ -125,7 +125,9 @@ $no = 0;
                 </form>
             </div>
         </div>
-        <div class="col-lg-6">
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between">
                     <h6 class="m-2 font-weight-bold text-primary">List Data Permintaan</h6>
@@ -146,7 +148,7 @@ $no = 0;
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            {{-- <tfoot>
                                 <tr>
                                     <th>No</th>
                                     <th>ID Barang</th>
@@ -154,7 +156,7 @@ $no = 0;
                                     <th>Jumlah Permintaan</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> --}}
                             <tbody>
                                 @if (!empty($temporary_permintaans))
                                     @foreach ($temporary_permintaans as $kode_session => $temporary_permintaan)
@@ -165,7 +167,7 @@ $no = 0;
                                             <td>{{ $no }}</td>
                                             <td>{{ $temporary_permintaan['id_barang'] }}</td>
                                             <td title="{{ $temporary_permintaan['nama_barang'] }}">
-                                                {{ substr($temporary_permintaan['nama_barang'], 0, 10) }}</td>
+                                                {{ $temporary_permintaan['nama_barang'] }}</td>
                                             <td>{{ $temporary_permintaan['jumlah_permintaan'] }}</td>
                                             <td> <a href="#" id="delete" class="btn btn-danger" title="Delete"
                                                     data-toggle='modal' data-target='#deleteModal'
