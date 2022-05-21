@@ -253,7 +253,18 @@ class PermintaanController extends Controller
             ->where(['detail_permintaan.permintaan_id' => $permintaan_id, 'detail_permintaan.barang_id' => $id_barang])
             ->first();
 
-        return view('admin.pages.Permintaan.persetujuan', compact('permintaan_id', 'counter_id', 'kode', 'details', 'slug'));
+        $sisa_barang = BarangCounter::join('barang as b', 'barang_counter.barang_id', '=', 'b.barang_id')
+            ->join('counter as c', 'barang_counter.counter_id', '=', 'c.counter_id')
+            ->where(['barang_counter.barang_id' => $id_barang, 'barang_counter.counter_id' => $counter_id])
+            ->first();
+
+        if (!empty($sisa_barang)) {
+            $sisa = $sisa_barang->barang_counter_stok;
+        } else {
+            $sisa = 0;
+        }
+        var_dump($sisa);
+        return view('admin.pages.Permintaan.persetujuan', compact('permintaan_id', 'counter_id', 'kode', 'details', 'slug', 'sisa'));
     }
 
     public function getGudangorCounter(Request $request)
@@ -429,7 +440,7 @@ class PermintaanController extends Controller
             $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
             $permintaans->status = "Ditolak";
             $permintaans->save();
-            
+
             session()->forget("temporary_persetujuans");
             return redirect()->route('permintaan');
         }

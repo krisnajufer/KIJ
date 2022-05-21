@@ -143,10 +143,11 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-11">
-                                <label for="nama_counter" style="color: black; font-weight: 500px;">Jumlah Stok Barang di Counter</label>
+                                <label for="nama_counter" style="color: black; font-weight: 500px;">Jumlah Stok Barang di
+                                    Counter</label>
                                 <input type="text" class="form-control form-control-user"
                                     style="color: black; font-weight: 500px;" id="nama_counter" name="nama_counter"
-                                    value="{{ $details->name }}" readonly>
+                                    value="{{ $sisa }}" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -213,7 +214,8 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">Pastikan data sudah benar, jika sudah benar pilih "Benar" dan
+                                    <div class="modal-body">Pastikan data sudah benar, jika sudah benar pilih "Benar"
+                                        dan
                                         jika belum pilih "Tidak"</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
