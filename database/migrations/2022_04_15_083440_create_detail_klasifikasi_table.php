@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('detail_klasifikasi', function (Blueprint $table) {
             $table->id();
-            $table->string('klasifikasi_id', 10);
+            $table->string('klasifikasi_id', 17);
             $table->string('barang_id', 10);
             $table->integer('permintaan_tahunan');
             $table->float('persentase_biaya', 5, 2);

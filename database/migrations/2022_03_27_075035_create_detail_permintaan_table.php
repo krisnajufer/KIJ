@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('detail_permintaan', function (Blueprint $table) {
             $table->id();
-            $table->string('permintaan_id', 10);
+            $table->string('permintaan_id', 17);
             $table->string('barang_id', 10);
             $table->integer('jumlah_permintaan');
             $table->timestamps();
