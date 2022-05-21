@@ -181,13 +181,18 @@ class TransaksiPenjualanController extends Controller
             ->first();
         $barang_counter_id = $barang_counters->barang_counter_id;
 
-
+        $temporary_keranjang_counters = session("temporary_keranjang_counters");
+        if (!empty($temporary_keranjang_counters)) {
+            $stok_kembali = $temporary_keranjang_counters[$barang_counter_id]['barang_counter_stok'];
+        } else {
+            $stok_kembali = 0;
+        }
         $temporary_barang_counters = session("temporary_barang_counters");
         $temporary_barang_counters[$barang_counter_id] = [
             "barang_counter_id" => $barang_counters->barang_counter_id,
             "slug" => $barang_counters->slug,
             "nama_barang" => $barang_counters->nama_barang,
-            "barang_counter_stok" => $temporary_barang_counters[$barang_counter_id]['barang_counter_stok'] - $request->qty_penjualan,
+            "barang_counter_stok" => $temporary_barang_counters[$barang_counter_id]['barang_counter_stok'] - $request->qty_penjualan + $stok_kembali,
             "harga_barang" => $barang_counters->harga_barang,
         ];
 
@@ -199,10 +204,9 @@ class TransaksiPenjualanController extends Controller
                 "barang_counter_id" => $barang_counters->barang_counter_id,
                 "slug" => $barang_counters->slug,
                 "nama_barang" => $barang_counters->nama_barang,
-                "barang_counter_stok" => $temporary_keranjang_counters[$barang_counter_id]['barang_counter_stok'] + $request->qty_penjualan,
+                "barang_counter_stok" => $request->qty_penjualan,
                 "harga_barang" => $barang_counters->harga_barang,
             ];
-
             session(["temporary_keranjang_counters" => $temporary_keranjang_counters]);
         } else {
             $temporary_keranjang_counters[$barang_counter_id] = [
