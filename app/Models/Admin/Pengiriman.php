@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Permintaan;
+use Illuminate\Support\Carbon;
 
 class Pengiriman extends Model
 {
@@ -29,23 +30,33 @@ class Pengiriman extends Model
     {
         $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
         $counter_id = $permintaans->counter_id;
-        $sub_counter_id = substr($counter_id, 3, 5);
-        $kode = DB::table('pengiriman')->join('permintaan', 'pengiriman.permintaan_id', '=', 'permintaan.permintaan_id')
-            ->where('permintaan.counter_id', '=', $counter_id)->max('pengiriman_id');
+        $now = Carbon::now();
+        $year = date('Y', strtotime($now));
+        $sub_year = substr($year, 2);
+
+        $query = "SELECT MAX(pengiriman_id) as max from pengiriman where substr(pengiriman_id, 10,2) = '" . $sub_year . "' and permintaan_id = '" . $permintaan_id . "'";
+        $datas = DB::select($query);
+
+        foreach ($datas as $key => $data) {
+            $max = $data->max;
+        }
+
         $addNol = '';
-        $kode = substr($kode, 4, 8);
-        $kode = (int) $kode + 1;
+        $kode = substr($max, 13, 5);
+        $kode = (int)$kode + 1;
         $incrementKode = $kode;
 
         if (strlen($kode) == 1) {
-            $addNol = "000";
+            $addNol = "0000";
         } elseif (strlen($kode) == 2) {
-            $addNol = "00";
+            $addNol = "000";
         } elseif (strlen($kode) == 3) {
+            $addNol = "00";
+        } elseif (strlen($kode) == 4) {
             $addNol = "0";
         }
 
-        $kodeBaru = "SC" . $sub_counter_id . $addNol . $incrementKode;
+        $kodeBaru = "PG" . '.' . $counter_id . '.' . $sub_year . '.' . $addNol . $incrementKode;
         return $kodeBaru;
     }
 }

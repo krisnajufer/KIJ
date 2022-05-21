@@ -93,7 +93,7 @@ $no = 0;
                             </div>
                         </div>
                         <div class="form-group row justify-content-center m-0">
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <a href="{{ route('cancel.create.permintaan') }}" class="btn btn-secondary"><i
                                         class="fas fa-window-close"></i><span>&nbsp;Batal</span></a>
                                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i

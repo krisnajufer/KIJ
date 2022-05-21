@@ -48,7 +48,7 @@ class PenerimaanController extends Controller
             } else {
                 if ($detail->sumber == 'gudang') {
                     $barang_counters = new BarangCounter;
-                    $kode_barangs = BarangCounter::kode($counter_id);
+                    $kode_barangs = BarangCounter::kode($counter_id, $detail->barang_id);
                     $barang_counters->barang_counter_id = $kode_barangs;
                     $barang_counters->slug =  \Illuminate\Support\Str::random(16);
                     $barang_counters->barang_id = $detail->barang_id;
@@ -60,7 +60,7 @@ class PenerimaanController extends Controller
                     $barangs->save();
                 } elseif ($detail->sumber == 'counter') {
                     $barang_counters = new BarangCounter;
-                    $kode_barangs = BarangCounter::kode($counter_id);
+                    $kode_barangs = BarangCounter::kode($counter_id, $detail->barang_id);
                     $barang_counters->barang_counter_id = $kode_barangs;
                     $barang_counters->slug =  \Illuminate\Support\Str::random(16);
                     $barang_counters->barang_id = $detail->barang_id;

@@ -36,7 +36,7 @@ class BarangController extends Controller
                 ->orderBy('barang_counter.barang_counter_id', 'desc')
                 ->get();
 
-            return view('admin.pages.barang.index', compact('barangs'));;
+            return view('admin.pages.barang.index', compact('barangs'));
         }
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('penerimaan_id', 17);
             $table->primary('penerimaan_id');
             $table->string('slug');
-            $table->string('pengiriman_id', 10);
+            $table->string('pengiriman_id', 17);
             $table->string('counter_id', 10);
             $table->date('tanggal_penerimaan');
 

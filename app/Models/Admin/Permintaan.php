@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class Permintaan extends Model
 {
@@ -29,22 +30,33 @@ class Permintaan extends Model
         $user_id = Auth::guard('admin')->user()->user_id;
         $counter = Counter::where('user_id', $user_id)->first();
         $counter_id = $counter->counter_id;
-        $sub_counter_id = substr($counter_id, 3, 5);
-        $kode = DB::table('permintaan')->where('counter_id', '=', $counter_id)->max('permintaan_id');
+        $now = Carbon::now();
+        $year = date('Y', strtotime($now));
+        $sub_year = substr($year, 2);
+
+        $query = "SELECT MAX(permintaan_id) as max from permintaan where substr(permintaan_id, 10,2) = '" . $sub_year . "' and counter_id = '" . $counter_id . "'";
+        $datas = DB::select($query);
+
+        foreach ($datas as $key => $data) {
+            $max = $data->max;
+        }
+
         $addNol = '';
-        $kode = substr($kode, 4, 8);
-        $kode = (int) $kode + 1;
+        $kode = substr($max, 13, 5);
+        $kode = (int)$kode + 1;
         $incrementKode = $kode;
 
         if (strlen($kode) == 1) {
-            $addNol = "000";
+            $addNol = "0000";
         } elseif (strlen($kode) == 2) {
-            $addNol = "00";
+            $addNol = "000";
         } elseif (strlen($kode) == 3) {
+            $addNol = "00";
+        } elseif (strlen($kode) == 4) {
             $addNol = "0";
         }
 
-        $kodeBaru = "RC" . $sub_counter_id . $addNol . $incrementKode;
+        $kodeBaru = "PM" . '.' . $counter_id . '.' . $sub_year . '.' . $addNol . $incrementKode;
         return $kodeBaru;
     }
 }
