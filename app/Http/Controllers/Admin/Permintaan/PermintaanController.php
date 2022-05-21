@@ -278,12 +278,17 @@ class PermintaanController extends Controller
             ), 200);
         } elseif ($sumber == 'counter') {
             $permintaan_id = $request->id_permintaan;
+            $barang_id = $request->id_barang;
 
             $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
             $counter_id = $permintaans->counter_id;
-            $counters = Counter::join('users as u', 'counter.user_id', '=', 'u.user_id')
-                ->where('counter.counter_id', '<>', $counter_id)
+            $counters = BarangCounter::join('counter as c', 'barang_counter.counter_id', '=', 'c.counter_id')
+                ->join('users as u', 'c.user_id', '=', 'u.user_id')
+                ->where('barang_counter.counter_id', '<>', $counter_id)
+                ->where('barang_counter.barang_id', '=', $barang_id)
+                ->where('barang_counter.barang_counter_stok', '>=', '10')
                 ->get();
+
             return response()->json(array(
                 'msg' => $counters
             ), 200);

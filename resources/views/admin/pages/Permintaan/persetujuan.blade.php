@@ -40,6 +40,7 @@
         function getGudangorCounter() {
             var sumber = $('#sumber').val();
             var id_permintaan = $('#id_permintaan').val();
+            var id_barang = $('#id_barang').val();
             $('#id_sumber').removeAttr('disabled');
             if (sumber == 'gudang') {
                 $.ajax({
@@ -64,7 +65,8 @@
                     data: {
                         '_token': '<?php echo csrf_token(); ?>',
                         'sumber': sumber,
-                        'id_permintaan': id_permintaan
+                        'id_permintaan': id_permintaan,
+                        'id_barang' : id_barang,
                     },
                     success: function(data) {
                         $('#id_sumber').html("");
@@ -125,7 +127,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-11">
-                                <input type="hidden" name="id_barang" value="{{ $details->barang_id }}">
+                                <input type="hidden" name="id_barang" id="id_barang" value="{{ $details->barang_id }}">
                                 <label for="nama_barang" style="color: black; font-weight: 500px;">Nama Barang</label>
                                 <input type="text" class="form-control form-control-user"
                                     style="color: black; font-weight: 500px;" id="nama_barang" name="nama_barang"
