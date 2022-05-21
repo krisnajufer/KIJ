@@ -44,6 +44,7 @@
                             <th>(Penjualan Pertahun
                                 × cost/unit)/Total
                                 (%)</th>
+                            <th>Persentase Kumulatif</th>
                             <th>Klasifikasi</th>
                         </tr>
                     </thead>
@@ -58,6 +59,13 @@
                         </tr>
                     </tfoot> --}}
                     <tbody>
+                        @php
+                            $hasil = 0;
+                            $total = 0;
+                            foreach ($details as $detail) {
+                                $total += $detail->costxpertahun;
+                            }
+                        @endphp
                         @foreach ($details as $no => $detail)
                             <tr>
                                 <td>{{ $no + 1 }}&nbsp;</td>
@@ -65,6 +73,13 @@
                                 <td>{{ $detail->nama_barang }}</td>
                                 <td>{{ $detail->permintaan_tahunan }}</td>
                                 <td>{{ $detail->persentase_biaya }}%</td>
+                                <td>
+                                    @php
+                                        $decimal = round(($detail->costxpertahun / $total) * 100, 2);
+                                        $hasil += $decimal;
+                                        echo $hasil . ' %';
+                                    @endphp
+                                </td>
                                 <td>{{ $detail->klasifikasi }}</td>
                             </tr>
                         @endforeach

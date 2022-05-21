@@ -203,7 +203,8 @@ class KlasifikasiController extends Controller
         if ($role == 'gudang') {
             $klasifikasis = Klasifikasi::where('slug', $slug)->first();
             $klasifikasi_id = $klasifikasis->klasifikasi_id;
-            $details = DetailKlasifikasi::join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
+            $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
+                ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
                 ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
                 ->get();
 
@@ -211,7 +212,8 @@ class KlasifikasiController extends Controller
         } elseif ($role == 'counter') {
             $klasifikasis = Klasifikasi::where('slug', $slug)->first();
             $klasifikasi_id = $klasifikasis->klasifikasi_id;
-            $details = DetailKlasifikasi::join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
+            $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
+                ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
                 ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
                 ->get();
 

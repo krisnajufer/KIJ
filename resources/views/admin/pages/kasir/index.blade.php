@@ -82,23 +82,26 @@ $total = 0;
                                 </tr>
                             </tfoot> --}}
                             <tbody>
-                                @foreach ($temporary_barang_counters as $kode_session => $temporary_barang_counter)
-                                    @php
-                                        $no_kasir++;
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $no_kasir }}</td>
-                                        <td>{{ $temporary_barang_counter['nama_barang'] }}</td>
-                                        <td>{{ $temporary_barang_counter['harga_barang'] }}</td>
-                                        <td>{{ $temporary_barang_counter['barang_counter_stok'] }}</td>
-                                        <td><a href="#" id="add" class="btn btn-primary" data-toggle='modal'
-                                                data-target='#addModal'
-                                                data-id="{{ $temporary_barang_counter['slug'] }}"><i
-                                                    class="fas fa-plus-circle"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @if (!empty($temporary_barang_counters))
+                                    @foreach ($temporary_barang_counters as $kode_session => $temporary_barang_counter)
+                                        @php
+                                            $no_kasir++;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $no_kasir }}</td>
+                                            <td>{{ $temporary_barang_counter['nama_barang'] }}</td>
+                                            <td>{{ $temporary_barang_counter['harga_barang'] }}</td>
+                                            <td>{{ $temporary_barang_counter['barang_counter_stok'] }}</td>
+                                            <td><a href="#" id="add" class="btn btn-primary" data-toggle='modal'
+                                                    data-target='#addModal'
+                                                    data-id="{{ $temporary_barang_counter['slug'] }}"><i
+                                                        class="fas fa-plus-circle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                             </tbody>
                         </table>
                     </div>
