@@ -335,10 +335,10 @@ class PermintaanController extends Controller
 
                         return redirect('/permintaan/show/' . $slug);
                     } else {
-                        return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "stok barang tidak mencukupi dicounter yang dipilih");
+                        return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "Stok barang tidak mencukupi di counter yang dipilih");
                     }
                 } else {
-                    return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "barang tidak ada dicounter yang dipilih");
+                    return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "Barang tidak ada di counter yang dipilih");
                 }
             } elseif ($sumber == 'gudang') {
                 $barangs = Barang::where('barang_id', $barang_id)->first();
@@ -363,7 +363,7 @@ class PermintaanController extends Controller
 
                     return redirect('/permintaan/show/' . $slug);
                 } else {
-                    return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "stok barang tidak mencukupi digudang yang dipilih");
+                    return redirect('/permintaan/create/persetujuan/' . $slug . '/' . $barang_id)->with("warning", "Stok barang tidak mencukupi di gudang yang dipilih");
                 }
             }
         } elseif ($persetujuan == 'Tidak') {

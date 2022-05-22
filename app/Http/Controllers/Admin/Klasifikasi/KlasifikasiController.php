@@ -186,7 +186,7 @@ class KlasifikasiController extends Controller
 
                     $detail_klasifikasi->save();
                 }
-                return redirect()->route('klasifikasi')->with("success", "klasifikasi baru telah berhasil ditambahkan");
+                return redirect()->route('klasifikasi')->with("success", "Klasifikasi baru telah berhasil ditambahkan");
             }
         }
     }

@@ -77,6 +77,24 @@ class BarangSeeder extends Seeder
                 "stok_barang" => 100,
                 "harga_barang" => 8000
             ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Double Tape Joyko",
+                "stok_barang" => 100,
+                "harga_barang" => 7500
+            ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Tas Palazzo",
+                "stok_barang" => 100,
+                "harga_barang" => 150000
+            ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Tas Export",
+                "stok_barang" => 100,
+                "harga_barang" => 200000
+            ],
         ];
 
         foreach ($seeds as $seed) {

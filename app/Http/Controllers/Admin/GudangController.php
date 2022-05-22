@@ -101,10 +101,10 @@ class GudangController extends Controller
                 $gudangs->save();
                 return redirect('gudang')->with("success", "Data gudang berhasil diubah");
             } else {
-                return redirect('/gudang/edit/' . $slug)->with("warning", "Data gudang dengan username tersebut sudah ada / sudah pernah dipakai !!");
+                return redirect('/gudang/edit/' . $slug)->with("warning", "Data gudang dengan username tersebut sudah ada/sudah pernah dipakai");
             }
         } else {
-            return redirect('/gudang/edit/' . $slug)->with("warning", "Data gudang dengan nama tersebut sudah ada / sudah pernah dipakai !!");
+            return redirect('/gudang/edit/' . $slug)->with("warning", "Data gudang dengan nama tersebut sudah ada/sudah pernah dipakai");
         }
     }
 

@@ -20,7 +20,7 @@ class GudangSeeder extends Seeder
             [
                 "slug" => \Illuminate\Support\Str::random(16),
                 "user_id" => "U0001",
-                "alamat_gudang" => "Surabaya"
+                "alamat_gudang" => "Jl. Kyai Tambak Deres No.229, Kota Surabaya, Jawa Timur"
             ]
         ];
 

@@ -77,10 +77,10 @@ class CounterController extends Controller
 
                 return redirect('counter')->with("success", "Data counter berhasil ditambahkan");
             } else {
-                return back()->with("warning", "Data counter dengan username tersebut sudah ada !!");
+                return back()->with("warning", "Data counter dengan username tersebut sudah ada");
             }
         } else {
-            return back()->with("warning", "Data counter dengan nama tersebut sudah ada !!");
+            return back()->with("warning", "Data counter dengan nama tersebut sudah ada");
         }
     }
 
@@ -139,10 +139,10 @@ class CounterController extends Controller
                 $counters->save();
                 return redirect('counter')->with("success", "Data counter berhasil diubah");
             } else {
-                return redirect('/counter/edit/' . $slug)->with("warning", "Data counter dengan username tersebut sudah ada / sudah pernah dipakai !!");
+                return redirect('/counter/edit/' . $slug)->with("warning", "Data counter dengan username tersebut sudah ada/sudah pernah dipakai");
             }
         } else {
-            return redirect('/counter/edit/' . $slug)->with("warning", "Data counter dengan nama tersebut sudah ada / sudah pernah dipakai !!");
+            return redirect('/counter/edit/' . $slug)->with("warning", "Data counter dengan nama tersebut sudah ada/sudah pernah dipakai");
         }
     }
 
@@ -159,7 +159,7 @@ class CounterController extends Controller
         $user_id = $counter->user_id;
         User::where('user_id', $user_id)->delete();
 
-        session()->flash("info", "Data counter berhasil dihapus !!");
+        session()->flash("info", "Data counter berhasil dihapus");
         return redirect::to('counter');
     }
 }
