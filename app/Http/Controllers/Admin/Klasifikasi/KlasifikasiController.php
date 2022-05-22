@@ -126,7 +126,7 @@ class KlasifikasiController extends Controller
 
                     $detail_klasifikasi->save();
                 }
-                return redirect()->route('klasifikasi')->with("success", "klasifikasi baru telah berhasil ditambahkan");
+                return redirect()->route('klasifikasi')->with("success", "Klasifikasi baru telah berhasil ditambahkan");
             }
         } elseif ($role == 'counter') {
             $user_id = Auth::guard('admin')->user()->user_id;
@@ -136,7 +136,7 @@ class KlasifikasiController extends Controller
             $klasifikasi_counts = Klasifikasi::where(['counter_id' => $counter_id, 'tgl_mulai_klasifikasi' => $afterSub, 'tgl_akhir_klasifikasi' => $date])->count();
 
             if ($klasifikasi_counts > 0) {
-                return redirect()->route('create.klasifikasi')->with("info", "Mohon maaf klasifikasi di tahun tersebut sudah ada");
+                return redirect()->route('create.klasifikasi')->with("info", "Mohon maaf klasifikasi di periode tersebut sudah ada");
             } else {
                 $hasil = 0;
                 $total = 0;

@@ -16,6 +16,11 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}"></script>
+    <script>
+        $('#dataTable').dataTable({
+            "ordering": false
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -54,9 +59,12 @@
                         </tr>
                     </tfoot> --}}
                     <tbody>
+                        @php
+                            $number = 1;
+                        @endphp
                         @foreach ($details as $no => $detail)
                             <tr>
-                                <td>{{ $no + 1 }}&nbsp;</td>
+                                <td>{{ $number++ }}&nbsp;</td>
                                 <td>{{ $detail->nama_barang }}</td>
                                 <td>{{ $detail->harga_barang }}</td>
                                 <td>{{ $detail->qty_penjualan }}</td>
