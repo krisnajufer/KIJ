@@ -182,7 +182,7 @@ class TransaksiPenjualanController extends Controller
         $barang_counter_id = $barang_counters->barang_counter_id;
 
         $temporary_keranjang_counters = session("temporary_keranjang_counters");
-        if (!empty($temporary_keranjang_counters)) {
+        if (!empty($temporary_keranjang_counters[$barang_counter_id])) {
             $stok_kembali = $temporary_keranjang_counters[$barang_counter_id]['barang_counter_stok'];
         } else {
             $stok_kembali = 0;
