@@ -19,28 +19,28 @@ class PermintaanSeeder extends Seeder
     {
         $seeds = (object)[
             [
-                "permintaan_id" => "RC010001",
+                "permintaan_id" => "PM.C0004.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "counter_id" => "C0001",
                 "tanggal_permintaan" => Carbon::now(),
                 "status" => "Diterima"
             ],
             [
-                "permintaan_id" => "RC020001",
+                "permintaan_id" => "PM.C0002.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "counter_id" => "C0002",
                 "tanggal_permintaan" => Carbon::now(),
                 "status" => "Diterima"
             ],
             [
-                "permintaan_id" => "RC030001",
+                "permintaan_id" => "PM.C0003.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "counter_id" => "C0003",
                 "tanggal_permintaan" => Carbon::now(),
                 "status" => "Diterima"
             ],
             [
-                "permintaan_id" => "RC040001",
+                "permintaan_id" => "PM.C0004.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "counter_id" => "C0004",
                 "tanggal_permintaan" => Carbon::now(),

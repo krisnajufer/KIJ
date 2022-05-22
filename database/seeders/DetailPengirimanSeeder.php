@@ -18,364 +18,404 @@ class DetailPengirimanSeeder extends Seeder
     {
         $seeds = (object)[
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0001",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0002",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0003",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0004",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0005",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0006",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0007",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0008",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0009",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC010001",
+                "pengiriman_id" => "PG.C0001.22.00001",
                 "barang_id" => "B0010",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0001",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0002",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0003",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0004",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0005",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0006",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0007",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0008",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0009",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC020001",
+                "pengiriman_id" => "PG.C0002.22.00001",
                 "barang_id" => "B0010",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0001",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0002",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0003",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0004",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0005",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0006",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0007",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0008",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0009",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC030001",
+                "pengiriman_id" => "PG.C0003.22.00001",
                 "barang_id" => "B0010",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0001",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0002",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0003",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0004",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0005",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0006",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0007",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0008",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0009",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
             [
-                "pengiriman_id" => "SC040001",
+                "pengiriman_id" => "PG.C0004.22.00001",
                 "barang_id" => "B0010",
                 "jumlah_pengiriman" => 50,
                 "sumber" => "gudang",
                 "gudang_id" => "G0001",
                 "counter_id" => "",
-                "persetujuan" => "Setuju"
+                "persetujuan" => "Setuju",
+                "alasan" => "-"
             ],
         ];
 

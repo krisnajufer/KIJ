@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             CounterSeeder::class,
             BarangSeeder::class,
-            // BarangCounterSeeder::class,
+            BarangCounterSeeder::class,
             GudangSeeder::class,
-            // PermintaanSeeder::class,
-            // DetailPermintaanSeeder::class,
-            // PengirimanSeeder::class,
-            // DetailPengirimanSeeder::class,
-            // PenerimaanSeeder::class,
+            PermintaanSeeder::class,
+            DetailPermintaanSeeder::class,
+            PengirimanSeeder::class,
+            DetailPengirimanSeeder::class,
+            PenerimaanSeeder::class,
         ]);
     }
 }

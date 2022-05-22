@@ -19,69 +19,69 @@ class BarangCounterSeeder extends Seeder
         $seeds = (object)[
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010001",
+                "barang_counter_id" => "C0001B0001",
                 "barang_id" => "B0001",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010002",
+                "barang_counter_id" => "C0001B0002",
                 "barang_id" => "B0002",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010003",
+                "barang_counter_id" => "C0001B0003",
                 "barang_id" => "B0003",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010004",
+                "barang_counter_id" => "C0001B0004",
                 "barang_id" => "B0004",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010005",
+                "barang_counter_id" => "C0001B0005",
                 "barang_id" => "B0005",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010006",
+                "barang_counter_id" => "C0001B0006",
                 "barang_id" => "B0006",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010007",
+                "barang_counter_id" => "C0001B0007",
                 "barang_id" => "B0007",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010008",
+                "barang_counter_id" => "C0001B0008",
                 "barang_id" => "B0008",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC010009",
+                "barang_counter_id" => "C0001B0009",
                 "barang_id" => "B0009",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0001"
             ],
             [
-                "barang_counter_id" => "BC010010",
+                "barang_counter_id" => "C0001B0010",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "barang_id" => "B0010",
                 "barang_counter_stok" => 50,
@@ -89,69 +89,69 @@ class BarangCounterSeeder extends Seeder
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020001",
+                "barang_counter_id" => "C0002B0001",
                 "barang_id" => "B0001",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020002",
+                "barang_counter_id" => "C0002B0002",
                 "barang_id" => "B0002",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020003",
+                "barang_counter_id" => "C0002B0003",
                 "barang_id" => "B0003",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020004",
+                "barang_counter_id" => "C0002B0004",
                 "barang_id" => "B0004",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020005",
+                "barang_counter_id" => "C0002B0005",
                 "barang_id" => "B0005",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020006",
+                "barang_counter_id" => "C0002B0006",
                 "barang_id" => "B0006",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020007",
+                "barang_counter_id" => "C0002B0007",
                 "barang_id" => "B0007",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020008",
+                "barang_counter_id" => "C0002B0008",
                 "barang_id" => "B0008",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC020009",
+                "barang_counter_id" => "C0002B0009",
                 "barang_id" => "B0009",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0002"
             ],
             [
-                "barang_counter_id" => "BC020010",
+                "barang_counter_id" => "C0002B0010",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "barang_id" => "B0010",
                 "barang_counter_stok" => 50,
@@ -159,69 +159,69 @@ class BarangCounterSeeder extends Seeder
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030001",
+                "barang_counter_id" => "C0003B0001",
                 "barang_id" => "B0001",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030002",
+                "barang_counter_id" => "C0003B0002",
                 "barang_id" => "B0002",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030003",
+                "barang_counter_id" => "C0003B0003",
                 "barang_id" => "B0003",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030004",
+                "barang_counter_id" => "C0003B0004",
                 "barang_id" => "B0004",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030005",
+                "barang_counter_id" => "C0003B0005",
                 "barang_id" => "B0005",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030006",
+                "barang_counter_id" => "C0003B0006",
                 "barang_id" => "B0006",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030007",
+                "barang_counter_id" => "C0003B0007",
                 "barang_id" => "B0007",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030008",
+                "barang_counter_id" => "C0003B0008",
                 "barang_id" => "B0008",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC030009",
+                "barang_counter_id" => "C0003B0009",
                 "barang_id" => "B0009",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0003"
             ],
             [
-                "barang_counter_id" => "BC030010",
+                "barang_counter_id" => "C0003B0010",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "barang_id" => "B0010",
                 "barang_counter_stok" => 50,
@@ -229,69 +229,69 @@ class BarangCounterSeeder extends Seeder
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040001",
+                "barang_counter_id" => "C0004B0001",
                 "barang_id" => "B0001",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040002",
+                "barang_counter_id" => "C0004B0002",
                 "barang_id" => "B0002",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040003",
+                "barang_counter_id" => "C0004B0003",
                 "barang_id" => "B0003",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040004",
+                "barang_counter_id" => "C0004B0004",
                 "barang_id" => "B0004",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040005",
+                "barang_counter_id" => "C0004B0005",
                 "barang_id" => "B0005",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040006",
+                "barang_counter_id" => "C0004B0006",
                 "barang_id" => "B0006",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040007",
+                "barang_counter_id" => "C0004B0007",
                 "barang_id" => "B0007",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040008",
+                "barang_counter_id" => "C0004B0008",
                 "barang_id" => "B0008",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
                 "slug" => \Illuminate\Support\Str::random(16),
-                "barang_counter_id" => "BC040009",
+                "barang_counter_id" => "C0004B0009",
                 "barang_id" => "B0009",
                 "barang_counter_stok" => 50,
                 "counter_id" => "C0004"
             ],
             [
-                "barang_counter_id" => "BC040010",
+                "barang_counter_id" => "C0004B0010",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "barang_id" => "B0010",
                 "barang_counter_stok" => 50,
