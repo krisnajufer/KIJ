@@ -40,7 +40,7 @@ class PenerimaanSeeder extends Seeder
                 "tanggal_penerimaan" => Carbon::now(),
             ],
             [
-                "penerimaan_id" => "PN.C0003.22.0001",
+                "penerimaan_id" => "PN.C0004.22.0001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "pengiriman_id" => "PG.C0004.22.00001",
                 "counter_id" => "C0004",
