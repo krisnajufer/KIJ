@@ -263,7 +263,6 @@ class PermintaanController extends Controller
         } else {
             $sisa = 0;
         }
-        var_dump($sisa);
         return view('admin.pages.Permintaan.persetujuan', compact('permintaan_id', 'counter_id', 'kode', 'details', 'slug', 'sisa'));
     }
 
