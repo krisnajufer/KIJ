@@ -30,10 +30,11 @@
             var persetujuan = $('#persetujuan').val();
             if (persetujuan == 'Setuju') {
                 $('#sumber').removeAttr('disabled');
-
+                $('#alasan').attr('disabled', 'disabled')
             } else {
                 $('#sumber').attr('disabled', 'disabled')
                 $('#id_sumber').attr('disabled', 'disabled')
+                $('#alasan').removeAttr('disabled')
             }
         }
 
@@ -194,7 +195,7 @@
                         <div class="form-group row">
                             <div class="col-sm-11">
                                 <label for="komentar" style="color: black; font-weight: 500px;">Alasan Tidak Setuju</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="alasan" rows="3" name="alasan" disabled></textarea>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center m-0">

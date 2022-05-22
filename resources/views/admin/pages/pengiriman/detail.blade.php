@@ -26,7 +26,8 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between"">
-                        <h6 class="   m-2 font-weight-bold text-primary">ID Pengiriman : {{ $pengiriman_id }}</h6>
+                                <h6 class="     m-2 font-weight-bold text-primary">ID Pengiriman : {{ $pengiriman_id }}
+            </h6>
             <a class="btn btn-secondary" href="{{ route('pengiriman') }}"><i
                     class="fas fa-arrow-circle-left"></i>&nbsp;<span>Kembali</span></a>
         </div>
@@ -41,6 +42,7 @@
                             <th>Persetujuan</th>
                             <th>Sumber</th>
                             <th>Dikirim dari</th>
+                            <th>Alasan</th>
                         </tr>
                     </thead>
                     {{-- <tfoot>
@@ -77,6 +79,9 @@
                                     @elseif ($detail->persetujuan == 'Tidak')
                                         -
                                     @endif
+                                </td>
+                                <td>
+                                    {{ $detail->alasan }}
                                 </td>
                             </tr>
                         @endforeach

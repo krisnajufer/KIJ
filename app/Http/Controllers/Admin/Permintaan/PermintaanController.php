@@ -307,6 +307,7 @@ class PermintaanController extends Controller
             $sumber = $request->sumber;
             $id_sumber = $request->id_sumber;
             $slug = $request->slug;
+            $alasan = "-";
 
 
             if ($sumber == 'counter') {
@@ -324,7 +325,8 @@ class PermintaanController extends Controller
                             "jumlah_pengiriman" => $jumlah_pengiriman,
                             "sumber" => $sumber,
                             "id_sumber" => $id_sumber,
-                            "persetujuan" => $persetujuan
+                            "persetujuan" => $persetujuan,
+                            "alasan" => $alasan,
                         ];
 
                         session(["temporary_persetujuans" => $temporary_persetujuans]);
@@ -351,7 +353,8 @@ class PermintaanController extends Controller
                         "jumlah_pengiriman" => $jumlah_pengiriman,
                         "sumber" => $sumber,
                         "id_sumber" => $id_sumber,
-                        "persetujuan" => $persetujuan
+                        "persetujuan" => $persetujuan,
+                        "alasan" => $alasan,
                     ];
 
                     session(["temporary_persetujuans" => $temporary_persetujuans]);
@@ -372,6 +375,7 @@ class PermintaanController extends Controller
             $jumlah_pengiriman = $request->jumlah_pengiriman;
             $sumber = "";
             $id_sumber = "";
+            $alasan = $request->alasan;
 
             $temporary_persetujuans = session("temporary_persetujuans");
 
@@ -381,7 +385,8 @@ class PermintaanController extends Controller
                 "jumlah_pengiriman" => $jumlah_pengiriman,
                 "sumber" => $sumber,
                 "id_sumber" => $id_sumber,
-                "persetujuan" => $persetujuan
+                "persetujuan" => $persetujuan,
+                "alasan" => $alasan
             ];
 
             session(["temporary_persetujuans" => $temporary_persetujuans]);
@@ -427,6 +432,7 @@ class PermintaanController extends Controller
                     $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
                     $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
                     $detail_pengirimans->gudang_id = $temporary_persetujuan['id_sumber'];
+                    $detail_pengirimans->alasan = $temporary_persetujuan['alasan'];
                     $detail_pengirimans->save();
                 } else {
                     $detail_pengirimans = new DetailPengiriman;
@@ -436,6 +442,7 @@ class PermintaanController extends Controller
                     $detail_pengirimans->sumber = $temporary_persetujuan['sumber'];
                     $detail_pengirimans->persetujuan = $temporary_persetujuan['persetujuan'];
                     $detail_pengirimans->counter_id = $temporary_persetujuan['id_sumber'];
+                    $detail_pengirimans->alasan = $temporary_persetujuan['alasan'];
                     $detail_pengirimans->save();
                 }
             }

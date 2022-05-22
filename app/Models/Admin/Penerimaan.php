@@ -35,7 +35,7 @@ class Penerimaan extends Model
         $year = date('Y', strtotime($now));
         $sub_year = substr($year, 2);
 
-        $query = "SELECT MAX(penerimaan_id) as max from penerimaan where substr(penerimaan_id, 10,2) = '" . $sub_year . "' and pengiriman_id = '" . $pengiriman_id . "'";
+        $query = "SELECT MAX(penerimaan_id) as max from penerimaan where substr(penerimaan_id, 10,2) = '" . $sub_year . "' and substr(penerimaan_id, 4,5) ='" . $counter_id . "'";
         $datas = DB::select($query);
 
         foreach ($datas as $key => $data) {
