@@ -19,7 +19,7 @@ class PermintaanSeeder extends Seeder
     {
         $seeds = (object)[
             [
-                "permintaan_id" => "PM.C0004.22.00001",
+                "permintaan_id" => "PM.C0001.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "counter_id" => "C0001",
                 "tanggal_permintaan" => Carbon::now(),
