@@ -16,6 +16,11 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}"></script>
+    <script>
+        $('#dataTable').dataTable({
+            "ordering": false
+        });
+    </script>
 @endpush
 
 @section('content')
