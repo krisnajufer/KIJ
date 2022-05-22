@@ -21,7 +21,14 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Pengiriman</h1>
+        <h1 class="h3 mb-0 text-gray-800">
+            @if (Auth::guard('admin')->user()->role == 'gudang')
+                Pengiriman ke Counter
+            @elseif (Auth::guard('admin')->user()->role == 'counter')
+                Pengiriman dari Gudang
+            @endif
+        </h1>
+
     </div>
 
     <div class="card shadow mb-4">

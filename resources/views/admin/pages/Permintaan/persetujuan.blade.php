@@ -66,7 +66,7 @@
                         '_token': '<?php echo csrf_token(); ?>',
                         'sumber': sumber,
                         'id_permintaan': id_permintaan,
-                        'id_barang' : id_barang,
+                        'id_barang': id_barang,
                     },
                     success: function(data) {
                         $('#id_sumber').html("");
@@ -189,6 +189,12 @@
                                 <select name="id_sumber" id="id_sumber" class="form-control form-control-user" disabled>
                                     <option value="pilih">Pilih Nama Sumber</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-11">
+                                <label for="komentar" style="color: black; font-weight: 500px;">Alasan Tidak Setuju</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center m-0">

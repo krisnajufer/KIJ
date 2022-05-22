@@ -198,7 +198,7 @@ class BarangController extends Controller
             ->count();
 
         if ($cek_permintaan > 0) {
-            session()->flash("warning", "Data barang yang sudah pernah di transaksikan tidak dapat dihapus !!");
+            session()->flash("warning", "Data barang yang sudah pernah ditransaksikan tidak dapat dihapus !!");
             return redirect::to('barang');
         } else {
             Barang::where('slug', $request->slug)->delete();

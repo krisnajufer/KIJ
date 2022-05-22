@@ -60,14 +60,26 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('permintaan') }}" aria-expanded="true">
                 <i class="fa fa-cube" aria-hidden="true"></i>
-                <span>Permintaan</span>
+                <span>
+                    @if (Auth::guard('admin')->user()->role == 'gudang')
+                        Permintaan dari Counter
+                    @elseif (Auth::guard('admin')->user()->role == 'counter')
+                        Permintaan ke Gudang
+                    @endif
+                </span>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('pengiriman') }}" aria-expanded="true">
                 <i class="fas fa-truck"></i>
-                <span>Pengiriman</span>
+                <span>
+                    @if (Auth::guard('admin')->user()->role == 'gudang')
+                        Pengiriman ke Counter
+                    @elseif (Auth::guard('admin')->user()->role == 'counter')
+                        Pengiriman dari Gudang
+                    @endif
+                </span>
             </a>
         </li>
         {{-- <li class="nav-item">
