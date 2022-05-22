@@ -63,9 +63,12 @@
                         </tr>
                     </tfoot> --}}
                     <tbody>
+                        @php
+                            $number = 1;
+                        @endphp
                         @foreach ($details as $no => $detail)
                             <tr>
-                                <td>{{ $no + 1 }}&nbsp;</td>
+                                <td>{{ $number++ }}&nbsp;</td>
                                 <td>{{ $detail->nama_barang }}</td>
                                 <td>{{ $detail->jumlah_permintaan }}</td>
                                 @if (Auth::guard('admin')->user()->role == 'gudang')

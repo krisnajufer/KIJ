@@ -25,7 +25,7 @@ class DetailPengirimanSeeder extends Seeder
                 "gudang_id" => "G0001",
                 "counter_id" => "",
                 "persetujuan" => "Setuju",
-                "alasan" => "-"
+                "alasan" => "-",
             ],
             [
                 "pengiriman_id" => "PG.C0001.22.00001",
@@ -35,7 +35,7 @@ class DetailPengirimanSeeder extends Seeder
                 "gudang_id" => "G0001",
                 "counter_id" => "",
                 "persetujuan" => "Setuju",
-                "alasan" => "-"
+                "alasan" => "-",
             ],
             [
                 "pengiriman_id" => "PG.C0001.22.00001",
@@ -45,7 +45,7 @@ class DetailPengirimanSeeder extends Seeder
                 "gudang_id" => "G0001",
                 "counter_id" => "",
                 "persetujuan" => "Setuju",
-                "alasan" => "-"
+                "alasan" => "-",
             ],
             [
                 "pengiriman_id" => "PG.C0001.22.00001",
@@ -430,6 +430,7 @@ class DetailPengirimanSeeder extends Seeder
                 $details->gudang_id = $seed["gudang_id"];
                 $details->counter_id = $seed["counter_id"];
                 $details->persetujuan = $seed["persetujuan"];
+                $details->alasan = $seed["alasan"];
                 $details->save();
                 DB::commit();
             } catch (\Exception $ex) {
