@@ -15,7 +15,13 @@
     <script src="{{ asset('SBAdmin2/assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}">
+    </script>
+    <script>
+        $('#dataTable').dataTable({
+            "ordering": false
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -82,9 +88,12 @@
                         </tr>
                     </tfoot> --}}
                     <tbody>
+                        @php
+                            $number = 1;
+                        @endphp
                         @foreach ($details as $no => $detail)
                             <tr>
-                                <td>{{ $no + 1 }}&nbsp;</td>
+                                <td>{{ $number++ }}&nbsp;</td>
                                 <td>{{ $detail->klasifikasi_id }}</td>
                                 <td>{{ $detail->nama_barang }}</td>
                                 <td>{{ $detail->permintaan_tahunan }}</td>
