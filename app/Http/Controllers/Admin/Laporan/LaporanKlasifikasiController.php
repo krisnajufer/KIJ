@@ -10,6 +10,7 @@ use App\Models\Admin\Counter;
 use App\Models\Admin\Gudang;
 use App\Models\Admin\DetailKlasifikasi;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class LaporanKlasifikasiController extends Controller
 {
@@ -91,7 +92,8 @@ class LaporanKlasifikasiController extends Controller
         $start_date = $klasifikasis->tgl_mulai_klasifikasi;
         $end_date = $klasifikasis->tgl_akhir_klasifikasi;
 
-        $details = DetailKlasifikasi::join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
+        $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
+            ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
             ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
             ->get();
 
@@ -111,7 +113,8 @@ class LaporanKlasifikasiController extends Controller
         $end_date = substr($klasifikasis->tgl_akhir_klasifikasi, 0, 4);
 
 
-        $details = DetailKlasifikasi::join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
+        $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
+            ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
             ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
             ->get();
 

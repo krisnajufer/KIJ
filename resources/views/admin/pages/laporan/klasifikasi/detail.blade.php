@@ -15,8 +15,7 @@
     <script src="{{ asset('SBAdmin2/assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}">
-    </script>
+    <script src="{{ asset('SBAdmin2/assets/js/demo/datatables-demo.js') }}"></script>
     <script>
         $('#dataTable').dataTable({
             "ordering": false
@@ -74,6 +73,7 @@
                             <th>Nama Barang</th>
                             <th>Permintaan Tahunan</th>
                             <th>Persentase Biaya</th>
+                            <th>Persentase Kumulatif</th>
                             <th>Klasifikasi</th>
                         </tr>
                     </thead>
@@ -90,6 +90,11 @@
                     <tbody>
                         @php
                             $number = 1;
+                            $hasil = 0;
+                            $total = 0;
+                            foreach ($details as $detail) {
+                                $total += $detail->costxpertahun;
+                            }
                         @endphp
                         @foreach ($details as $no => $detail)
                             <tr>
@@ -98,6 +103,13 @@
                                 <td>{{ $detail->nama_barang }}</td>
                                 <td>{{ $detail->permintaan_tahunan }}</td>
                                 <td>{{ $detail->persentase_biaya }}%</td>
+                                <td>
+                                    @php
+                                        $decimal = round(($detail->costxpertahun / $total) * 100, 2);
+                                        $hasil += $decimal;
+                                        echo $hasil . ' %';
+                                    @endphp
+                                </td>
                                 <td>{{ $detail->klasifikasi }}</td>
                             </tr>
                         @endforeach
