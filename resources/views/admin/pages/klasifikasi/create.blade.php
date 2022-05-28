@@ -172,7 +172,7 @@
                                     @endphp
                                 </td>
                                 <td>
-                                    @if ($hasil <= 75.0)
+                                    @if ($hasil <= 80.0)
                                         A
                                     @elseif ($hasil <= 95.0)
                                         B
