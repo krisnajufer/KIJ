@@ -176,7 +176,7 @@ class KlasifikasiController extends Controller
                     $detail_klasifikasi->persentase_biaya = $decimal;
 
                     $hasil += $decimal;
-                    if ($hasil <= 75.00) {
+                    if ($hasil <= 80.00) {
                         $detail_klasifikasi->klasifikasi = "A";
                     } elseif ($hasil <= 95.00) {
                         $detail_klasifikasi->klasifikasi = "B";
