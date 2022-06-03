@@ -278,6 +278,7 @@ class PermintaanController extends Controller
         } elseif ($sumber == 'counter') {
             $permintaan_id = $request->id_permintaan;
             $barang_id = $request->id_barang;
+            $jumlah_pengiriman = $request->jumlah_pengiriman;
 
             $permintaans = Permintaan::where('permintaan_id', $permintaan_id)->first();
             $counter_id = $permintaans->counter_id;
@@ -285,7 +286,7 @@ class PermintaanController extends Controller
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
                 ->where('barang_counter.counter_id', '<>', $counter_id)
                 ->where('barang_counter.barang_id', '=', $barang_id)
-                ->where('barang_counter.barang_counter_stok', '>=', '10')
+                ->where('barang_counter.barang_counter_stok', '>', $jumlah_pengiriman + 15)
                 ->get();
 
             return response()->json(array(

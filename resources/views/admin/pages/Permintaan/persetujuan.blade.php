@@ -42,6 +42,7 @@
             var sumber = $('#sumber').val();
             var id_permintaan = $('#id_permintaan').val();
             var id_barang = $('#id_barang').val();
+            var jumlah_pengiriman = $('#jumlah_pengiriman').val();
             $('#id_sumber').removeAttr('disabled');
             if (sumber == 'gudang') {
                 $.ajax({
@@ -68,6 +69,7 @@
                         'sumber': sumber,
                         'id_permintaan': id_permintaan,
                         'id_barang': id_barang,
+                        'jumlah_pengiriman': jumlah_pengiriman,
                     },
                     success: function(data) {
                         $('#id_sumber').html("");
