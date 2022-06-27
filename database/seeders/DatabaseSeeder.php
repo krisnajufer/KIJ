@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin\DetailPengiriman;
+use App\Models\Admin\TransaksiPenjualan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,8 @@ class DatabaseSeeder extends Seeder
             PengirimanSeeder::class,
             DetailPengirimanSeeder::class,
             PenerimaanSeeder::class,
+            TransaksiPenjualanSeeder::class,
+            DetailTransaksiPenjualanSeeder::class,
         ]);
     }
 }
