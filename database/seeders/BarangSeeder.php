@@ -95,6 +95,36 @@ class BarangSeeder extends Seeder
                 "stok_barang" => 100,
                 "harga_barang" => 200000
             ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Tas Laptop 15,6",
+                "stok_barang" => 100,
+                "harga_barang" => 350000
+            ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Kipas Meja Kecil",
+                "stok_barang" => 100,
+                "harga_barang" => 27000
+            ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Mouse Votre",
+                "stok_barang" => 100,
+                "harga_barang" => 16500
+            ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Speaker JBL",
+                "stok_barang" => 100,
+                "harga_barang" => 350000
+            ],
+            [
+                "slug" => \Illuminate\Support\Str::random(16),
+                "nama_barang" => "Papan Tulis Kapur Mini",
+                "stok_barang" => 100,
+                "harga_barang" => 24500
+            ],
         ];
 
         foreach ($seeds as $seed) {
