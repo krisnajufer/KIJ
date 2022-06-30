@@ -19,28 +19,28 @@ class PenerimaanSeeder extends Seeder
     {
         $seeds = (object)[
             [
-                "penerimaan_id" => "PN.C0001.22.0001",
+                "penerimaan_id" => "PN.C0001.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "pengiriman_id" => "PG.C0001.22.00001",
                 "counter_id" => "C0001",
                 "tanggal_penerimaan" => Carbon::now(),
             ],
             [
-                "penerimaan_id" => "PN.C0002.22.0001",
+                "penerimaan_id" => "PN.C0002.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "pengiriman_id" => "PG.C0002.22.00001",
                 "counter_id" => "C0002",
                 "tanggal_penerimaan" => Carbon::now(),
             ],
             [
-                "penerimaan_id" => "PN.C0003.22.0001",
+                "penerimaan_id" => "PN.C0003.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "pengiriman_id" => "PG.C0003.22.00001",
                 "counter_id" => "C0003",
                 "tanggal_penerimaan" => Carbon::now(),
             ],
             [
-                "penerimaan_id" => "PN.C0004.22.0001",
+                "penerimaan_id" => "PN.C0004.22.00001",
                 "slug" => \Illuminate\Support\Str::random(16),
                 "pengiriman_id" => "PG.C0004.22.00001",
                 "counter_id" => "C0004",
