@@ -30,7 +30,6 @@
         /* table {
             border-collapse: collapse;
         } */
-
     </style>
 </head>
 

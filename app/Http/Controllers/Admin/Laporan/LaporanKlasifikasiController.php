@@ -111,7 +111,7 @@ class LaporanKlasifikasiController extends Controller
         $klasifikasi_id = $klasifikasis->klasifikasi_id;
         $start_date = substr($klasifikasis->tgl_mulai_klasifikasi, 0, 4);
         $end_date = substr($klasifikasis->tgl_akhir_klasifikasi, 0, 4);
-
+        $counter_name = Auth::guard('admin')->user()->name;
 
         $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
             ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
@@ -120,6 +120,6 @@ class LaporanKlasifikasiController extends Controller
 
         $pdf = PDF::loadView('admin.pages.laporan.klasifikasi.export', compact('details', 'klasifikasi_id', 'start_date', 'end_date', 'slug'));
 
-        return $pdf->download('Laporan Klasifikasi Tahun ' . $start_date . ' - ' . $end_date . '.pdf');
+        return $pdf->download('Laporan Klasifikasi Tahun ' . $counter_name . ' - ' . $start_date . ' - ' . $end_date . '.pdf');
     }
 }
