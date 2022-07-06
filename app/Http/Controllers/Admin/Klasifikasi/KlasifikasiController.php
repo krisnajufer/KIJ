@@ -82,12 +82,12 @@ class KlasifikasiController extends Controller
             } else {
                 $hasil = 0;
                 $total = 0;
-                $klasifikasi_counters = DetailTransaksiPenjualan::select('b.nama_barang', DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan) AS qty_tahunan'), DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan * b.harga_barang) AS costxpertahun'))
+                $klasifikasi_counters = DetailTransaksiPenjualan::select('b.barang_id', DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan) AS qty_tahunan'), DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan * b.harga_barang) AS costxpertahun'))
                     ->leftjoin('barang_counter as bc', 'detail_transaksi_penjualan.barang_counter_id', '=', 'bc.barang_counter_id')
                     ->leftjoin('barang as b', 'bc.barang_id', '=', 'b.barang_id')
                     ->leftjoin('transaksi_penjualan as tp', 'detail_transaksi_penjualan.transaksi_penjualan_id', '=', 'tp.transaksi_penjualan_id')
                     ->whereBetween('tp.tanggal_penjualan', [$afterSub, $date])
-                    ->groupBy('b.nama_barang')
+                    ->groupBy('b.barang_id')
                     ->orderBy('costxpertahun', 'DESC')
                     ->get();
 
