@@ -82,11 +82,12 @@ class KlasifikasiController extends Controller
             } else {
                 $hasil = 0;
                 $total = 0;
-                $klasifikasi_counters = DetailKlasifikasi::select('barang.barang_id', DB::raw('SUM(detail_klasifikasi.permintaan_tahunan) AS qty_tahunan'), DB::raw('SUM(detail_klasifikasi.permintaan_tahunan * barang.harga_barang) AS costxpertahun'))
-                    ->leftjoin('barang', 'detail_klasifikasi.barang_id', '=', 'barang.barang_id')
-                    ->leftjoin('klasifikasi', 'detail_klasifikasi.klasifikasi_id', '=', 'klasifikasi.klasifikasi_id')
-                    ->where(['klasifikasi.tgl_mulai_klasifikasi' => $afterSub, 'klasifikasi.tgl_akhir_klasifikasi' => $date, 'klasifikasi.gudang_id' => ""])
-                    ->groupBy('barang.barang_id')
+                $klasifikasi_counters = DetailTransaksiPenjualan::select('b.nama_barang', DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan) AS qty_tahunan'), DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan * b.harga_barang) AS costxpertahun'))
+                    ->leftjoin('barang_counter as bc', 'detail_transaksi_penjualan.barang_counter_id', '=', 'bc.barang_counter_id')
+                    ->leftjoin('barang as b', 'bc.barang_id', '=', 'b.barang_id')
+                    ->leftjoin('transaksi_penjualan as tp', 'detail_transaksi_penjualan.transaksi_penjualan_id', '=', 'tp.transaksi_penjualan_id')
+                    ->whereBetween('tp.tanggal_penjualan', [$afterSub, $date])
+                    ->groupBy('b.nama_barang')
                     ->orderBy('costxpertahun', 'DESC')
                     ->get();
 
@@ -273,31 +274,25 @@ class KlasifikasiController extends Controller
             $dateSub = 364;
             $afterSub = $Date->subDays($dateSub)->format('Y-m-d');
 
-            $counter_counts = Klasifikasi::where(['klasifikasi.tgl_mulai_klasifikasi' => $afterSub, 'klasifikasi.tgl_akhir_klasifikasi' => $date])
-                ->where('counter_id', '!=', '')
+            $samples = DetailTransaksiPenjualan::select('b.nama_barang', DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan) AS qty_tahunan'), DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan * b.harga_barang) AS costxpertahun'))
+                ->leftjoin('barang_counter as bc', 'detail_transaksi_penjualan.barang_counter_id', '=', 'bc.barang_counter_id')
+                ->leftjoin('barang as b', 'bc.barang_id', '=', 'b.barang_id')
+                ->leftjoin('transaksi_penjualan as tp', 'detail_transaksi_penjualan.transaksi_penjualan_id', '=', 'tp.transaksi_penjualan_id')
+                ->whereBetween('tp.tanggal_penjualan', [$afterSub, $date])
+                ->groupBy('b.nama_barang')
+                ->orderBy('costxpertahun', 'DESC')
+                ->get();
+
+            $counts = DetailTransaksiPenjualan::select('b.nama_barang', DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan) AS qty_tahunan'), DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan * b.harga_barang) AS costxpertahun'))
+                ->leftjoin('barang_counter as bc', 'detail_transaksi_penjualan.barang_counter_id', '=', 'bc.barang_counter_id')
+                ->leftjoin('barang as b', 'bc.barang_id', '=', 'b.barang_id')
+                ->leftjoin('transaksi_penjualan as tp', 'detail_transaksi_penjualan.transaksi_penjualan_id', '=', 'tp.transaksi_penjualan_id')
+                ->whereBetween('tp.tanggal_penjualan', [$afterSub, $date])
+                ->groupBy('b.nama_barang')
                 ->count();
 
-            if ($counter_counts == 4) {
-                $samples = DetailKlasifikasi::select('barang.nama_barang', DB::raw('SUM(detail_klasifikasi.permintaan_tahunan) AS qty_tahunan'), DB::raw('SUM(detail_klasifikasi.permintaan_tahunan * barang.harga_barang) AS costxpertahun'))
-                    ->leftjoin('barang', 'detail_klasifikasi.barang_id', '=', 'barang.barang_id')
-                    ->leftjoin('klasifikasi', 'detail_klasifikasi.klasifikasi_id', '=', 'klasifikasi.klasifikasi_id')
-                    ->where(['klasifikasi.tgl_mulai_klasifikasi' => $afterSub, 'klasifikasi.tgl_akhir_klasifikasi' => $date, 'klasifikasi.gudang_id' => ""])
-                    ->groupBy('barang.nama_barang')
-                    ->orderBy('costxpertahun', 'DESC')
-                    ->get();
 
-                $counts = DetailKlasifikasi::select('barang.nama_barang', DB::raw('SUM(detail_klasifikasi.permintaan_tahunan) AS qty_tahunan'), DB::raw('SUM(detail_klasifikasi.permintaan_tahunan * barang.harga_barang) AS costxpertahun'))
-                    ->leftjoin('barang', 'detail_klasifikasi.barang_id', '=', 'barang.barang_id')
-                    ->leftjoin('klasifikasi', 'detail_klasifikasi.klasifikasi_id', '=', 'klasifikasi.klasifikasi_id')
-                    ->where(['klasifikasi.tgl_mulai_klasifikasi' => $afterSub, 'klasifikasi.tgl_akhir_klasifikasi' => $date, 'klasifikasi.gudang_id' => ""])
-                    ->groupBy('barang.nama_barang')
-                    ->count();
-
-
-                return view('admin.pages.klasifikasi.create', compact('date', 'dateSub', 'afterSub', 'samples', 'tahun', 'counts'));
-            } else {
-                return redirect()->route('create.klasifikasi')->with("info", "Mohon maaf beberapa counter belum melakukan klasifikasi untuk tahun tersebut");
-            }
+            return view('admin.pages.klasifikasi.create', compact('date', 'dateSub', 'afterSub', 'samples', 'tahun', 'counts'));
         } elseif ($role == 'counter') {
             $user_id = Auth::guard('admin')->user()->user_id;
             $counters = Counter::where('user_id', $user_id)->first();
