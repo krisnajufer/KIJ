@@ -21,11 +21,14 @@
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script>
-        $("#datepicker").datepicker({
-            format: " yyyy", // Notice the Extra space at the beginning
-            viewMode: "years",
-            minViewMode: "years"
-        });
+        // $("#datepicker").datepicker({
+        //     // format: "yyyy", // Notice the Extra space at the beginning
+        //     // viewMode: "years",
+        //     // minViewMode: "years"
+        //     format: "mm-yyyy",
+        //     startView: "months",
+        //     minViewMode: "months"
+        // });
     </script>
 @endpush
 
@@ -101,7 +104,7 @@
                     <div class="col-2">
                         <div class="form-group">
                             <label for="yearpicker">Periode</label>
-                            <input type="text" name="periode" id="datepicker" class="form-control">
+                            <input type="month" name="periode" id="yearpicker" class="form-control">
                         </div>
                     </div>
                     <div class="col" style="margin-top: 32px;">
@@ -111,9 +114,9 @@
         </div>
         <div class="table-responsive">
             @if ($counts > 0)
-                <h5 class="mt-3 mb-3">Laporan Transaksi Tahun
+                <h5 class="mt-3 mb-3">Laporan Transaksi
                     <span class="text-primary">
-                        {{ $periode }}
+                        {{ $date }}
                     </span>
                 </h5>
             @endif

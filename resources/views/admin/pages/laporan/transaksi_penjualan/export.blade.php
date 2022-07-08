@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laporan Transaksi Penjualan
         @if (Auth::guard('admin')->user()->role == 'gudang' or Auth::guard('admin')->user()->role == 'owner')
-            Counter Tahun {{ $periode }}
+            Counter Tahun {{ $date }}
         @elseif (Auth::guard('admin')->user()->role == 'counter')
-            {{ $counter_name }} Tahun {{ $periode }}
+            {{ $counter_name }} Tahun {{ $date }}
         @endif
     </title>
     <link type="text/css" rel="stylesheet"
@@ -35,7 +35,6 @@
         /* table {
             border-collapse: collapse;
         } */
-
     </style>
 </head>
 
@@ -48,9 +47,9 @@
         <hr style="border: 2;">
         <h4 class="text-center mt-2 mb-2">Laporan Transaksi Penjualan
             @if (Auth::guard('admin')->user()->role == 'gudang' or Auth::guard('admin')->user()->role == 'owner')
-                Counter Tahun {{ $periode }}
+                Counter <br> {{ $date }}
             @elseif (Auth::guard('admin')->user()->role == 'counter')
-                {{ $counter_name }} Tahun {{ $periode }}
+                {{ $counter_name }} <br> {{ $date }}
             @endif
 
         </h4>

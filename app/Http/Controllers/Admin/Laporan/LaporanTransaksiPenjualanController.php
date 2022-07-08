@@ -33,21 +33,27 @@ class LaporanTransaksiPenjualanController extends Controller
 
         $periode = $request->periode;
 
+        $month = substr($periode, 5);
+        $year = substr($periode, 0, 4);
+
         $role = Auth::guard('admin')->user()->role;
         if ($role == 'gudang' or $role == 'owner') {
             $transaksi_penjualans = TransaksiPenjualan::join('counter as c', 'transaksi_penjualan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->whereYear('transaksi_penjualan.tanggal_penjualan', $periode)
+                ->whereMonth('transaksi_penjualan.tanggal_penjualan', $month)
+                ->whereYear('transaksi_penjualan.tanggal_penjualan', $year)
                 ->orderBy('transaksi_penjualan.tanggal_penjualan', 'DESC')
                 ->get();
 
             $counts = TransaksiPenjualan::join('counter as c', 'transaksi_penjualan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->whereYear('transaksi_penjualan.tanggal_penjualan', $periode)
+                ->whereMonth('transaksi_penjualan.tanggal_penjualan', $month)
+                ->whereYear('transaksi_penjualan.tanggal_penjualan', $year)
                 ->count();
-
+            $date = date_create($periode);
+            $date = date_format($date, "F Y");
             if ($counts > 0) {
-                return view('admin.pages.laporan.transaksi_penjualan.index', compact('transaksi_penjualans', 'counts', 'periode'));
+                return view('admin.pages.laporan.transaksi_penjualan.index', compact('transaksi_penjualans', 'counts', 'date', 'periode'));
             } else {
                 return back()->with("info", "Belum ada transaksi dalam tahun tersebut");
             }
@@ -58,14 +64,16 @@ class LaporanTransaksiPenjualanController extends Controller
 
             $transaksi_penjualans = TransaksiPenjualan::join('counter as c', 'transaksi_penjualan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->whereYear('transaksi_penjualan.tanggal_penjualan', $periode)
+                ->whereYear('transaksi_penjualan.tanggal_penjualan', $year)
+                ->whereMonth('transaksi_penjualan.tanggal_penjualan', $month)
                 ->where('transaksi_penjualan.counter_id', $counter_id)
                 ->orderBy('transaksi_penjualan.tanggal_penjualan', 'DESC')
                 ->get();
 
             $counts = TransaksiPenjualan::join('counter as c', 'transaksi_penjualan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->whereYear('transaksi_penjualan.tanggal_penjualan', $periode)
+                ->whereYear('transaksi_penjualan.tanggal_penjualan', $year)
+                ->whereMonth('transaksi_penjualan.tanggal_penjualan', $month)
                 ->where('transaksi_penjualan.counter_id', $counter_id)
                 ->orderBy('transaksi_penjualan.tanggal_penjualan', 'DESC')
                 ->count();
@@ -73,7 +81,7 @@ class LaporanTransaksiPenjualanController extends Controller
             if ($counts > 0) {
                 return view('admin.pages.laporan.transaksi_penjualan.index', compact('transaksi_penjualans', 'counts', 'periode'));
             } else {
-                return back()->with("info", "Belum ada transaksi dalam tahun tersebut");
+                return back()->with("info", "Belum ada transaksi dalam waktu tersebut");
             }
         }
     }
@@ -84,18 +92,22 @@ class LaporanTransaksiPenjualanController extends Controller
             "tahun_periode" => "required"
         ]);
         $periode = $request->tahun_periode;
+        $month = substr($periode, 5);
+        $year = substr($periode, 0, 4);
 
         $role = Auth::guard('admin')->user()->role;
         if ($role == 'gudang' or $role == 'owner') {
             $transaksi_penjualans = TransaksiPenjualan::join('counter as c', 'transaksi_penjualan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->whereYear('transaksi_penjualan.tanggal_penjualan', $periode)
+                ->whereMonth('transaksi_penjualan.tanggal_penjualan', $month)
+                ->whereYear('transaksi_penjualan.tanggal_penjualan', $year)
                 ->orderBy('transaksi_penjualan.tanggal_penjualan', 'DESC')
                 ->get();
+            $date_create = date_create($periode);
+            $date = date_format($date_create, "F Y");
+            $pdf = PDF::loadView('admin.pages.laporan.transaksi_penjualan.export', compact('date', 'periode', 'transaksi_penjualans'));
 
-            $pdf = PDF::loadView('admin.pages.laporan.transaksi_penjualan.export', compact('periode', 'transaksi_penjualans'));
-
-            return $pdf->download('Laporan Penjualan ' . $periode . '.pdf');
+            return $pdf->download('Laporan Penjualan ' . $date . '.pdf');
         } elseif ($role == 'counter') {
             $user_id =  Auth::guard('admin')->user()->user_id;
             $counters = Counter::where('user_id', $user_id)->first();
@@ -104,14 +116,15 @@ class LaporanTransaksiPenjualanController extends Controller
 
             $transaksi_penjualans = TransaksiPenjualan::join('counter as c', 'transaksi_penjualan.counter_id', '=', 'c.counter_id')
                 ->join('users as u', 'c.user_id', '=', 'u.user_id')
-                ->whereYear('transaksi_penjualan.tanggal_penjualan', $periode)
+                ->whereMonth('transaksi_penjualan.tanggal_penjualan', $month)
+                ->whereYear('transaksi_penjualan.tanggal_penjualan', $year)
                 ->where('transaksi_penjualan.counter_id', $counter_id)
                 ->orderBy('transaksi_penjualan.tanggal_penjualan', 'DESC')
                 ->get();
-
-            $pdf = PDF::loadView('admin.pages.laporan.transaksi_penjualan.export', compact('periode', 'transaksi_penjualans', 'counter_name'));
-
-            return $pdf->download('Laporan Penjualan ' . $counter_name . ' - Tahun ' . $periode . '.pdf');
+            $date_create = date_create($periode);
+            $date = date_format($date_create, "F Y");
+            $pdf = PDF::loadView('admin.pages.laporan.transaksi_penjualan.export', compact('date', 'transaksi_penjualans', 'counter_name'));
+            return $pdf->download('Laporan Penjualan ' . $counter_name . ' - Tahun ' . $date . '.pdf');
         }
     }
 }
