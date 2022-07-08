@@ -77,6 +77,9 @@
                     </thead>
 
                     <tbody>
+                        @php
+                            $total = 0;
+                        @endphp
                         @foreach ($transaksi_penjualans as $no => $transaksi_penjualan)
                             <tr>
                                 <td align="center">{{ $no + 1 }}</td>
@@ -91,12 +94,24 @@
                                 </td>
                                 <td align="center">
                                     @php
+                                        $total = $total + $transaksi_penjualan->grand_total_penjualan;
                                         $rupiah = number_format($transaksi_penjualan->grand_total_penjualan, 0, ',', '.');
                                         echo 'Rp ' . $rupiah;
                                     @endphp
                                 </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td align="center" colspan="4">
+                                Grand Total
+                            </td>
+                            <td align="center">
+                                @php
+                                    $total_rupiah = number_format($total, 0, ',', '.');
+                                    echo 'Rp ' . $total_rupiah;
+                                @endphp
+                            </td>
+                        </tr>
                     </tbody>
 
                 </table>

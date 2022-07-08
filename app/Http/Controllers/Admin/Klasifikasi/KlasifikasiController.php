@@ -204,7 +204,7 @@ class KlasifikasiController extends Controller
         if ($role == 'gudang') {
             $klasifikasis = Klasifikasi::where('slug', $slug)->first();
             $klasifikasi_id = $klasifikasis->klasifikasi_id;
-            $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
+            $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.barang_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
                 ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
                 ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
                 ->get();
@@ -213,7 +213,7 @@ class KlasifikasiController extends Controller
         } elseif ($role == 'counter') {
             $klasifikasis = Klasifikasi::where('slug', $slug)->first();
             $klasifikasi_id = $klasifikasis->klasifikasi_id;
-            $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
+            $details = DetailKlasifikasi::select('detail_klasifikasi.klasifikasi_id', 'b.barang_id', 'b.nama_barang', 'detail_klasifikasi.permintaan_tahunan', DB::raw('(detail_klasifikasi.permintaan_tahunan * b.harga_barang) as costxpertahun'), 'detail_klasifikasi.persentase_biaya', 'detail_klasifikasi.klasifikasi')
                 ->join('barang as b', 'detail_klasifikasi.barang_id', '=', 'b.barang_id')
                 ->where('detail_klasifikasi.klasifikasi_id', $klasifikasi_id)
                 ->get();
@@ -328,5 +328,24 @@ class KlasifikasiController extends Controller
                 return redirect()->route('create.klasifikasi')->with("info", "Mohon maaf belum ada transaksi untuk jarak tahun tersebut");
             }
         }
+    }
+
+    public function detail_counter($klasifikasi_id, $barang_id)
+    {
+        $afterSub = Klasifikasi::select('tgl_mulai_klasifikasi')->where('klasifikasi_id', $klasifikasi_id)->first();
+        $date = Klasifikasi::select('tgl_akhir_klasifikasi')->where('klasifikasi_id', $klasifikasi_id)->first();
+        $samples = DetailTransaksiPenjualan::select('b.nama_barang', DB::raw('SUM(detail_transaksi_penjualan.qty_penjualan) AS qty_tahunan'), 'u.name')
+            ->leftjoin('barang_counter as bc', 'detail_transaksi_penjualan.barang_counter_id', '=', 'bc.barang_counter_id')
+            ->leftjoin('counter as c', 'bc.counter_id', '=', 'c.counter_id')
+            ->leftjoin('users as u', 'c.user_id', '=', 'u.user_id')
+            ->leftjoin('barang as b', 'bc.barang_id', '=', 'b.barang_id')
+            ->leftjoin('transaksi_penjualan as tp', 'detail_transaksi_penjualan.transaksi_penjualan_id', '=', 'tp.transaksi_penjualan_id')
+            ->whereBetween('tp.tanggal_penjualan', [$afterSub->tgl_mulai_klasifikasi, $date->tgl_akhir_klasifikasi])
+            ->where('b.barang_id', $barang_id)
+            ->groupBy('b.nama_barang', 'u.name')
+            ->orderBy('qty_tahunan', 'DESC')
+            ->get();
+
+        return view("admin.pages.klasifikasi.detail-barang", compact("klasifikasi_id", "samples"));
     }
 }

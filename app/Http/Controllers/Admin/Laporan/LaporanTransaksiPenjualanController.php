@@ -55,7 +55,7 @@ class LaporanTransaksiPenjualanController extends Controller
             if ($counts > 0) {
                 return view('admin.pages.laporan.transaksi_penjualan.index', compact('transaksi_penjualans', 'counts', 'date', 'periode'));
             } else {
-                return back()->with("info", "Belum ada transaksi dalam tahun tersebut");
+                return redirect()->route("laporan.penjualan")->with("info", "Belum ada transaksi dalam waktu tersebut");
             }
         } elseif ($role == 'counter') {
             $user_id =  Auth::guard('admin')->user()->user_id;
@@ -79,9 +79,9 @@ class LaporanTransaksiPenjualanController extends Controller
                 ->count();
 
             if ($counts > 0) {
-                return view('admin.pages.laporan.transaksi_penjualan.index', compact('transaksi_penjualans', 'counts', 'periode'));
+                return view('admin.pages.laporan.transaksi_penjualan.index', compact('transaksi_penjualans', 'counts', 'date', 'periode'));
             } else {
-                return back()->with("info", "Belum ada transaksi dalam waktu tersebut");
+                return redirect()->route("laporan.penjualan")->with("info", "Belum ada transaksi dalam waktu tersebut");
             }
         }
     }

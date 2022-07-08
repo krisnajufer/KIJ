@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Detail Klasifikasi
+    Detail Barang Klasifikasi
 @endsection
 
 @push('after-style')
@@ -26,7 +26,7 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Detail Klasifikasi</h1>
+        <h1 class="h3 mb-0 text-gray-800">Detail Barang Klasifikasi</h1>
     </div>
 
     <div class="card shadow mb-4">
@@ -43,15 +43,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Klasifikasi</th>
                             <th>Nama Barang</th>
                             <th>Jumlah Terjual Pertahun</th>
-                            <th>(Penjualan Pertahun
-                                × cost/unit)/Total
-                                (%)</th>
-                            <th>Persentase Kumulatif</th>
-                            <th>Klasifikasi</th>
-                            <th>Action</th>
+                            <th>Counter</th>
                         </tr>
                     </thead>
                     {{-- <tfoot>
@@ -67,33 +61,13 @@
                     <tbody>
                         @php
                             $number = 1;
-                            $hasil = 0;
-                            $total = 0;
-                            foreach ($details as $detail) {
-                                $total += $detail->costxpertahun;
-                            }
                         @endphp
-                        @foreach ($details as $no => $detail)
+                        @foreach ($samples as $no => $sample)
                             <tr>
                                 <td>{{ $number++ }}&nbsp;</td>
-                                <td>{{ $detail->klasifikasi_id }}</td>
-                                <td>{{ $detail->nama_barang }}</td>
-                                <td>{{ $detail->permintaan_tahunan }}</td>
-                                <td>{{ $detail->persentase_biaya }}%</td>
-                                <td>
-                                    @php
-                                        $decimal = round(($detail->costxpertahun / $total) * 100, 2);
-                                        $hasil += $decimal;
-                                        echo $hasil . ' %';
-                                    @endphp
-                                </td>
-                                <td>{{ $detail->klasifikasi }}</td>
-                                @if (Auth::guard('admin')->user()->role == 'gudang' or Auth::guard('admin')->user()->role == 'owner')
-                                    <td>
-                                        <a href="{{ url('/klasifikasi/detail/counter/' . $detail->klasifikasi_id . '/' . $detail->barang_id) }}"
-                                            class="btn btn-info">Detail Barang</a>
-                                    </td>
-                                @endif
+                                <td>{{ $sample->nama_barang }}</td>
+                                <td>{{ $sample->qty_tahunan }}</td>
+                                <td>{{ $sample->name }}</td>
                             </tr>
                         @endforeach
                     </tbody>

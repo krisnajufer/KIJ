@@ -115,11 +115,12 @@ Route::middleware('admin')->group(function () {
         Route::post('/klasifikasi/create/sample', 'createSampleKlasifikasi')->name('create.sample.klasifikasi');
         Route::post('/klasifikasi/store', 'store')->name('store.klasifikasi');
         Route::get('/klasifikasi/detail/{slug}', 'show');
+        Route::get('/klasifikasi/detail/counter/{klasifikasi_id}/{barang_id}', 'detail_counter');
     });
 
     Route::controller(LaporanTransaksiPenjualanController::class)->group(function () {
         Route::get('/laporan/penjualan', 'index')->name('laporan.penjualan');
-        Route::post('/laporan/penjualan/get', 'getindexPeriode')->name('get.periode');
+        Route::post('/laporan/penjualan/post', 'getindexPeriode')->name('post.periode');
         Route::post('/laporan/penjualan/export', 'exportTransaksiPenjualan')->name('laporan.penjualan.export');
     });
 

@@ -98,7 +98,7 @@
             </div>
         </form>
         <div class="card-body">
-            <form action="{{ route('get.periode') }}" method="post">
+            <form action="{{ route('post.periode') }}" method="POST">
                 <div class="row justify-content-start">
                     @csrf
                     <div class="col-2">
@@ -147,11 +147,13 @@
                                 <td>{{ $transaksi_penjualan->transaksi_penjualan_id }}</td>
                                 <td>{{ $transaksi_penjualan->name }}</td>
                                 <td>
-                                    @php
-                                        $date = date_create($transaksi_penjualan->tanggal_penjualan);
-                                        $tanggal = date_format($date, 'd F Y');
-                                        echo $tanggal;
-                                    @endphp
+                                    @if ($counts > 0)
+                                        @php
+                                            $date = date_create($transaksi_penjualan->tanggal_penjualan);
+                                            $tanggal = date_format($date, 'd F Y');
+                                            echo $tanggal;
+                                        @endphp
+                                    @endif
                                 </td>
                                 <td>
                                     {{ $transaksi_penjualan->grand_total_penjualan }}
